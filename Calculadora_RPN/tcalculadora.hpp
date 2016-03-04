@@ -15,20 +15,19 @@ class mycalc
 {
     private:
 
-        mypila<T> pila;
+        pila<T> pila_;
         
     public: 
 
 	    mycalc(void);
 	    ~mycalc(void);
 	    T calc(istream& expresion);
-	    bool es_operando(char* expres);
 };
 
 
 template <class T>
 mycalc<T>::mycalc(void):
-pila()
+pila_()
 {}
 
 template <class T>
@@ -52,7 +51,7 @@ T mycalc<T>::calc(istream& expresion)
     if(isdigit(expresion.peek()))
     {        
         expresion >> operando;
-            pila.push(operando);
+            pila_.push(operando);
     }
     
     else
@@ -63,33 +62,32 @@ T mycalc<T>::calc(istream& expresion)
         {
         case '+':
     
-            op1 = pila.pop();
-            op2 = pila.pop();
+            op1 =  pila_.pop();
+            op2 =  pila_.pop();
             aux = op1 + op2;
-            pila.push(aux);
+             pila_.push(aux);
         break;
         
         case '-':
-            op1 = pila.pop();
-            op2 = pila.pop();
+            op1 = pila_.pop();
+            op2 = pila_.pop();
             aux = op2 - op1;
-            pila.push(aux);
+            pila_.push(aux);
            
         break;
         
         case '/':
-            op1 = pila.pop();
-            op2 = pila.pop();
+            op1 = pila_.pop();
+            op2 = pila_.pop();
             aux = op2 / op1;
-            pila.push(aux);
+            pila_.push(aux);
            
          break; 
          
         case '*':
-            op1 = pila.pop();
-            op2 = pila.pop();
-            aux = op1 * op2;
-            pila.push(aux);
+            op1 = pila_.pop();
+            op2 = pila_.pop();
+            pila_.push(op1 * op2);
         break; 
         
         }
@@ -99,14 +97,5 @@ T mycalc<T>::calc(istream& expresion)
     expresion.ignore(1);
   
    }
- return pila.pop(); 
-}
-
-template <class T>
-bool mycalc<T>::es_operando(char* expres)
-{
-	if( ((*expres)>= '0') && ((*expres)<= '9') )
-	    return true;
-	else
-	    return false;
+ return pila_.pop(); 
 }

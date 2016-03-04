@@ -1,80 +1,92 @@
 #pragma once
-#include <iostream>
-#include <cstdio>
 
+#include <iostream>
 using namespace std;
 
+
 template <class T>
-class mynodo
+class node
 {
-    private:
-        T dato_; 
-        mynodo<T>* next_;
-        
-    public:
-        mynodo(void);
-        mynodo(T dato);
-        ~mynodo(void);
-        mynodo<T>* get_next(void);
-        T get_dato(void);
-        void set_next(mynodo<T>* next);
-        void set_dato(T dato);
+private:
+
+    T value_;
+    node<T>* next_;
+    node<T>* prev_;
+public:
+        node(void);
+        node(T value);
+        ~node(void);
+
+	    void set_next(node<T>* next);
+	    node<T>* get_next(void) const;
+	    
+	    void set_prev(node<T>* prev);
+	    node<T>* get_prev(void) const;	
+	    
+	    
+	     void set_value(T value);
+	    T get_value(void) const;
+	    
         ostream& write(ostream& os);
+
 };
 
-/*
-template <class T> // Definicion de la clase
-T mypair<T>::get_max(void)
-{
-    T aux;
-    aux = a>b?a:b;
-    return aux;
-}
-*/
-
 template <class T>
-mynodo<T>::mynodo(void):
-dato_(),
-next_(NULL)
+node<T>::node(void):
+next_(NULL),
+prev_(NULL),
+value_(0)
 {}
-
-template <class T>
-mynodo<T>::mynodo(T dato):
-dato_(dato),
-next_(NULL)
+        
+template <class T>        
+node<T>::node(T value):
+next_(NULL),
+value_(value)
 {}
-
+        
+template <class T>        
+node<T>::~node(void){}
+        
+        
 template <class T>
-mynodo<T>::~mynodo(void)
-{}
-
-
-template <class T>
-mynodo<T>* mynodo<T>::get_next(void)
+node<T>* node<T>::get_next(void) const
 {
     return next_;
 }
-
+    
 template <class T>
-T mynodo<T>::get_dato(void)
+T node<T>::get_value(void) const
 {
-    return dato_;
+    return value_;
 }
 
 template <class T>
-void mynodo<T>::set_next(mynodo<T>* next)
+void node<T>::set_next(node<T>* next)
 {
     next_ = next;
 }
 
 template <class T>
-void mynodo<T>::set_dato(T dato)
+void node<T>::set_prev(node<T>* prev)
 {
-    dato_ = dato;
+		prev_ = prev;
 }
 
 template <class T>
-ostream& mynodo<T>::write(ostream& os)
+node<T>* node<T>::get_prev(void) const
 {
-    os << dato_ << " ";
+		return prev_;
+}
+
+
+template <class T>
+void node<T>::set_value(T value)
+{
+    value_ = value;
+}
+
+template <class T>
+ostream& node<T>::write(ostream& os)
+{
+    os << value_ << " ";
 }
