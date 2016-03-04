@@ -59,9 +59,9 @@ bool operator==(const real& a, const real& b)
 bool operator!=(const real& a, const real& b)
 {
     if(a == b)
-        return true;
-     else
         return false;
+     else
+        return true;
 }
 
 bool operator<(const real& a, const real& b)

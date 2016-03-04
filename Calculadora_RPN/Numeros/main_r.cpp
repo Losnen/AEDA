@@ -42,19 +42,19 @@ int main() {
         cout << "A:" << A << " y B:" << B << " son iguales." << endl;
     }
         
-    if(B!=C)
+    if(C!=A)
     {
         cout << "B:" << B << " y C:" << C << " son distintos." << endl;
     }
     
-    if(A<C) 
+    if(A>C) 
     {
-        cout << "A:" << A << " Es menor que C:" << C << endl;
+        cout << "A:" << A << " Es mayor que C:" << C << endl;
     }
         
-    if(C>A)
+    if(C<A)
     {
-        cout << "C:" << C << " Es mayor que A:" << A << endl;
+        cout << "C:" << C << " Es menor que A:" << A << endl;
     }
     
 }
