@@ -102,3 +102,10 @@ ostream& operator<<(ostream& os, const entero& a)
   return os;
 }
 
+istream& operator>>(istream& is, entero& a)
+{
+  int n;
+  is >> n;
+  a = entero(n);
+  return is;
+}
