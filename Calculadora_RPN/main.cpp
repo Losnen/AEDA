@@ -1,19 +1,31 @@
-#include <iostream>
 #include <cstring>
-#include <cstdio>
 #include <cstdlib>
-#include "evaluador_RPN.h"
-//g++ -g main_RPN.cpp evaluador_RPN.cpp dll_t.cpp  dll_node_t.cpp dll_int_node_t.cpp  stack_int_t.cpp 
-
+#include <iostream>
+#include <sstream>
+#include <cstdio>
+#include <iomanip>
+#include <cctype> 
+#include "tlista.hpp"
+#include "tpila.hpp"
+#include "tcalculadora.hpp"
 using namespace std;
 
 int main(void)
 {
-    evaluador_RPN_t calculadora;
     
-     char cadena[] = "10 10 + 5 * 10 - 9 / 6 %"; 
-     cout << cadena << endl;
-     cout << " El resultado es: ";
-     cout << calculadora.eval(cadena) << endl;
+    
+    string str; 
+     
+     cout << "Introduce la expresion en forma RPN a calcular: " ; 
+     
+     getline(cin,str);
+     
+    istringstream expresion(str);
+    int r=0;
+    mycalc<int> A;
+    cout << " El resultado es: ";
+    r =  A.calc(expresion);
+    cout << r << endl;
+
 }
  
