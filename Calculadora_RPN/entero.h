@@ -31,5 +31,5 @@ class entero
         friend bool operator>=(const entero&, const entero&);
           
         friend ostream& operator<<(ostream&, const entero&);
-        friend istream& operator>>(istream&, const entero&);
+       friend istream& operator>>(istream&,entero&);
 };

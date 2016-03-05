@@ -106,6 +106,7 @@ istream& operator>>(istream& is, entero& a)
 {
   int n;
   is >> n;
-  a = entero(n);
+  entero aux(n);
+  a = aux;
   return is;
 }

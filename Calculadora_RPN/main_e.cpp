@@ -9,9 +9,10 @@ int main() {
     entero C(10);
       
      
-    //cout << "Elige un valor para A" << endl;
-    //cin >> A;
+    cout << "Elige un valor para A" << endl;
+    cin >> A;
     
+    cout << "A: " << A << endl; //Salida operadro >>
     
     A = 2;
     

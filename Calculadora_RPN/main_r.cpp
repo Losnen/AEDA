@@ -9,8 +9,8 @@ int main() {
     real C(1.0100002);
       
      
-    //cout << "Elige un valor para A" << endl;
-    //cin >> A;
+    cout << "Elige un valor para A" << endl;
+    cin >> A;
     
     
     A = 2.121202;

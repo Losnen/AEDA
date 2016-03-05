@@ -8,6 +8,10 @@
 #include "tlista.hpp"
 #include "tpila.hpp"
 #include "tcalculadora.hpp"
+#include "entero.h"
+#include "real.h"
+#include "complejo.h"
+
 using namespace std;
 
 int main(void)
@@ -21,8 +25,8 @@ int main(void)
      getline(cin,str);
      
     istringstream expresion(str);
-    int r=0;
-    mycalc<int> A;
+    complejo r;
+    mycalc<complejo> A;
     cout << " El resultado es: ";
     r =  A.calc(expresion);
     cout << r << endl;

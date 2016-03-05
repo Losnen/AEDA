@@ -35,5 +35,5 @@ class real
         friend bool operator>=(const real&, const real&);
           
         friend ostream& operator<<(ostream&, const real&);
-        friend istream& operator>>(istream&, const real&);
+        friend istream& operator>>(istream&, real&);
 };
