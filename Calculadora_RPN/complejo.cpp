@@ -137,10 +137,10 @@ ostream& operator<<(ostream& os, complejo& a)
 istream& operator>>(istream& is, complejo& a)
 {
   float re, im;
-  cout << "Parte real:";
+  
   is >> re;
   
-  cout << "Parte imaginaria:";
+  
   is >> im;
   cout << endl;
   
