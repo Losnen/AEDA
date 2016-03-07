@@ -7,17 +7,17 @@
 
 using namespace std;
 
-template <class TDATO>
+template <class T>
 class calculadora 
 {
 
   private:
-   	pila<TDATO> pila_;
+   	pila<T> pila_;
   public: 
 	
 	calculadora(void);
 	~calculadora(void);
-    TDATO eval(istream& expresion);
+    T eval(istream& expresion);
     bool isoperador(basic_istream<char>::int_type car);
     bool iscomplex(basic_istream<char>::int_type car);
     bool isrational(basic_istream<char>::int_type car);
@@ -28,25 +28,25 @@ class calculadora
 };
 
 
-template <class TDATO>
-calculadora<TDATO>::calculadora(void):
+template <class T>
+calculadora<T>::calculadora(void):
 pila_()
 {}
 
-template <class TDATO>
-calculadora<TDATO>::~calculadora(void)
+template <class T>
+calculadora<T>::~calculadora(void)
 {}
 
-template <class TDATO>
-TDATO calculadora<TDATO>::eval(istream& expresion)
+template <class T>
+T calculadora<T>::eval(istream& expresion)
 {
  
    
-  TDATO aux;
-   TDATO op1;
-   TDATO op2;
-   TDATO operando; 
-   TDATO resultado;
+  T aux;
+   T op1;
+   T op2;
+   T operando; 
+   T resultado;
    char op; 
    char parentesis, comillas;
 
@@ -106,7 +106,7 @@ TDATO calculadora<TDATO>::eval(istream& expresion)
                     
                         if (isdigit(expresion.peek()))
                         {
-                           TDATO negativo = -1;
+                           T negativo = -1;
                             expresion >> operando;
                             operando = operando * negativo; 
                             pila_.push(operando);
@@ -154,8 +154,8 @@ TDATO calculadora<TDATO>::eval(istream& expresion)
     
 }
 
-template <class TDATO>
-bool calculadora<TDATO>::isoperador(basic_istream<char>::int_type car)
+template <class T>
+bool calculadora<T>::isoperador(basic_istream<char>::int_type car)
 {
     
   
@@ -175,8 +175,8 @@ bool calculadora<TDATO>::isoperador(basic_istream<char>::int_type car)
 }
 
 
-template <class TDATO>
-bool calculadora<TDATO>::iscomplex(basic_istream<char>::int_type car)
+template <class T>
+bool calculadora<T>::iscomplex(basic_istream<char>::int_type car)
 {
     
   
@@ -188,8 +188,8 @@ bool calculadora<TDATO>::iscomplex(basic_istream<char>::int_type car)
 }
 
 
-template <class TDATO>
-bool calculadora<TDATO>::isrational(basic_istream<char>::int_type car)
+template <class T>
+bool calculadora<T>::isrational(basic_istream<char>::int_type car)
 {
     
   
