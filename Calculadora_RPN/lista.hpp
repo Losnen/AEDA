@@ -3,58 +3,58 @@
 #include <iostream>
 using namespace std;
 
-#include "tnodo.hpp"
+#include "nodo.hpp"
 
-template <class T>
+template <class TDATO>
 class dll {
 private:
 
-        node<T>* beginning_;
-        node<T>* end_;
+        node<TDATO>* beginning_;
+        node<TDATO>* end_;
 
  public:
         dll(void);
          ~dll(void);
 
-        void insert_beginning(node<T>* n);
-        node<T>* extract_beginning(void);
+        void insert_beginning(node<TDATO>* n);
+        node<TDATO>* extract_beginning(void);
 
-	    void insert_end(node<T>* n);
-	    node<T>* extract_end(void);
+	    void insert_end(node<TDATO>* n);
+	    node<TDATO>* extract_end(void);
 
         bool empty(void) const;	
 	    ostream&  write(ostream& os) const;
 };
     
 
-template <class T>
-dll<T>::dll(void):
+template <class TDATO>
+dll<TDATO>::dll(void):
 beginning_(NULL),
 end_(NULL){}
 
 
-template <class T>
-dll<T>::~dll(void) 
+template <class TDATO>
+dll<TDATO>::~dll(void) 
 {
     while (beginning_ != NULL) 
     {
-        node<T>* aux = beginning_;
+        node<TDATO>* aux = beginning_;
         beginning_ = beginning_->get_next();
         delete aux;
         }
 }
 
 
-template <class T>	
-bool dll<T>::empty(void) const 
+template <class TDATO>	
+bool dll<TDATO>::empty(void) const 
 {
         return (beginning_ == NULL);
 }
 
 
 
-template <class T>
-void dll<T>::insert_beginning(node<T>* n)
+template <class TDATO>
+void dll<TDATO>::insert_beginning(node<TDATO>* n)
 {
    n->set_next(beginning_);
    n->set_prev(NULL);
@@ -68,11 +68,11 @@ void dll<T>::insert_beginning(node<T>* n)
 }
 
 
-template <class T>
-node<T>* dll<T>::extract_beginning(void) 
+template <class TDATO>
+node<TDATO>* dll<TDATO>::extract_beginning(void) 
 {
 
-   node<T>* aux = beginning_;
+   node<TDATO>* aux = beginning_;
    beginning_ = beginning_->get_next();
         
    aux->set_next(NULL);
@@ -86,8 +86,8 @@ node<T>* dll<T>::extract_beginning(void)
 
 
 
-template <class T> 
-void dll<T>::insert_end(node<T>* n)
+template <class TDATO> 
+void dll<TDATO>::insert_end(node<TDATO>* n)
 {
     n->set_prev(end_);
     n->set_next(NULL);
@@ -101,11 +101,11 @@ void dll<T>::insert_end(node<T>* n)
 }
 
 
-template <class T>
-node<T>* dll<T>::extract_end(void) 
+template <class TDATO>
+node<TDATO>* dll<TDATO>::extract_end(void) 
 {
 
-        node<T>* aux = end_;
+        node<TDATO>* aux = end_;
         
         end_ = end_->get_prev();
         
@@ -121,10 +121,10 @@ node<T>* dll<T>::extract_end(void)
     } 
 
 
-template <class T>
-ostream& dll<T>::write(ostream& os) const 
+template <class TDATO>
+ostream& dll<TDATO>::write(ostream& os) const 
 {
-    node<T>* aux = beginning_;
+    node<TDATO>* aux = beginning_;
 
     while (aux != NULL) 
     {

@@ -1,4 +1,4 @@
-#include "entero.h"
+#include "enteros.h"
 
 entero::entero(void):
 numero_(0)
@@ -40,6 +40,12 @@ entero operator-(const entero& a, const entero& b)
 
 entero operator*(const entero& a, const entero& b)
 {
+    return a.get_numero() * b.get_numero();
+}
+
+entero negar(const entero& a)
+{
+    entero b(-1);
     return a.get_numero() * b.get_numero();
 }
 

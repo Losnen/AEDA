@@ -1,4 +1,4 @@
-#include "complejo.h"
+#include "complejos.h"
 #include <cmath>
 
 complejo::complejo(void):
@@ -26,6 +26,11 @@ i(real(im))
   m = r*r+i*i;
 }
 
+complejo::complejo(float n):
+r(n),
+i(0.0)
+{}
+
 complejo::~complejo(void){}
 
 real complejo::get_r(void) const
@@ -47,6 +52,14 @@ complejo& complejo::operator=(const complejo& a)
 {
   i = a.get_i();
   r = a.get_r();
+  
+  return *this;
+}
+
+complejo& complejo::operator=(int n)
+{
+  r = -1;
+  i = i;
   
   return *this;
 }
@@ -84,8 +97,16 @@ complejo operator-(const complejo& a, const complejo& b)
 
 complejo operator*(const complejo& a, const complejo& b)
 {
-  return complejo((a.get_r() * b.get_r()) - (a.get_i() * a.get_i()), a.get_r()*b.get_i() + a.get_i()*b.get_r());//(a + bi) * (c + di) = (ac − bd) + (ad + bc)i
+  if(b.get_i() == 0)
+  {
+    return complejo((a.get_r() * b.get_r()), a.get_i()); 
+  }
+  else
+    return complejo((a.get_r() * b.get_r()) - (a.get_i() * a.get_i()), a.get_r()*b.get_i() + a.get_i()*b.get_r());//(a + bi) * (c + di) = (ac − bd) + (ad + bc)i
+  
 }
+
+
 
 complejo operator/(const complejo& a, const complejo& b)
 {
@@ -95,7 +116,7 @@ complejo operator/(const complejo& a, const complejo& b)
 
 bool operator==(const complejo& a, const complejo& b)
 {
-  return(fabs(((a.get_m()-b.get_m()).get_numero())) < eps ? true:false);
+  return(fabs(((a.get_m()-b.get_m()).get_numero())) < EPSILON ? true:false);
 }
 
 bool operator!=(const complejo& a, const complejo& b)
@@ -105,7 +126,7 @@ bool operator!=(const complejo& a, const complejo& b)
 
 bool operator<(const complejo& a, const complejo& b)
 {
-  return((a.get_m()-b.get_m()) < -eps ? true:false);
+  return((a.get_m()-b.get_m()) < -EPSILON ? true:false);
 }
 
 bool operator>(const complejo& a, const complejo& b)
@@ -130,20 +151,17 @@ bool operator>=(const complejo& a, const complejo& b)
 
 ostream& operator<<(ostream& os, complejo& a)
 {
-  os << "[" << a.get_r() << "+" << a.get_i() << "i]";
+  os << " " << a.get_r() << "+" << a.get_i() << "i";
   return os;
 }
 
 istream& operator>>(istream& is, complejo& a)
 {
   float re, im;
-  
   is >> re;
-  
   
   is >> im;
   cout << endl;
-  
   a = complejo(re, im);
   return is;
 }

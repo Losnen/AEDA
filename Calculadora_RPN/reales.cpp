@@ -1,30 +1,35 @@
-#include "real.h"
-
+#include "reales.h"
+#include <cmath>
 real::real(void):
-numero_(0)
+numero(0)
 {}
 
 real::real(float n):
-numero_(n)
+numero(n)
 {}
+
+real::real(const real& n) 
+{
+  *this = n;
+}
 
 real::~real(void){}
 
 float real::get_numero(void) const
 {
-  return numero_;
+  return numero;
 }
 
 real& real::operator=(const real& a)
 {
-  numero_ = a.get_numero();
+  numero = a.get_numero();
   
   return *this;
 }
 
 real& real::operator=(const float& n)
 {
-  numero_ = n;
+  numero = n;
   return *this;
 }
 
@@ -48,53 +53,41 @@ real operator/(const real& a, const real& b)
   return real(a.get_numero() / b.get_numero());
 }
 
+
 bool operator==(const real& a, const real& b)
 {
-    if(fabs(a.get_numero()-b.get_numero()) < eps)
-        return true;
-    else
-        return false;
+  return(fabs(a.get_numero()-b.get_numero()) < EPSILON ? true:false);
 }
 
 bool operator!=(const real& a, const real& b)
 {
-    if(a == b)
-        return false;
-     else
-        return true;
+  return(a==b ? false:true);
 }
 
 bool operator<(const real& a, const real& b)
 {
-    if((a.get_numero())<(b.get_numero()-eps))
-        return true;
-    else
-        return false;
+  return((a.get_numero()-b.get_numero()) < -EPSILON ? true:false);
 }
 
 bool operator>(const real& a, const real& b)
 {
-    if((a.get_numero())>(b.get_numero()+eps))
-        return true;
-    else
-        return false;
+  if(a!=b) {
+    return(a<b ? false:true);
+  } else {
+    return false;
+  }
 }
 
 bool operator<=(const real& a, const real& b)
 {
-    if(a>b)
-        return false;
-    else
-        return true;
+  return(a>b ? false:true);
 }
 
 bool operator>=(const real& a, const real& b)
 {
-    if(a<b)
-        return false;
-    else
-        return true;
+  return(a<b ? false:true);
 }
+
 
 ostream& operator<<(ostream& os, const real& a)
 {

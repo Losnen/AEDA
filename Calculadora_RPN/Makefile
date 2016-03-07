@@ -1,10 +1,10 @@
 CXX=g++ 
 CXXFLAGS=-g
 
-OBJS =  main.o
+OBJS = complejos.o reales.o main.o enteros.o racionales.o
 
 all: ${OBJS}
-	$(CXX) $(CXXFLAGS) -o calc ${OBJS}
+	$(CXX) $(CXXFLAGS) -o out ${OBJS}
 
-clean: 
-	rm -rf *.o calc
+clear: 
+	rm -rf ${OBJS}

@@ -22,7 +22,7 @@ class entero
         friend entero operator-(const entero&, const entero&);
         friend entero operator*(const entero&, const entero&);
         friend entero operator/(const entero&, const entero&);
-          
+        friend entero negar(const entero&);
         friend bool operator==(const entero&, const entero&);
         friend bool operator!=(const entero&, const entero&);
         friend bool operator<(const entero&, const entero&);
