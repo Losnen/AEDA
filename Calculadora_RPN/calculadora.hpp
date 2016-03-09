@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <string>
 #include <sstream>
+#include <cmath>
 #include "pila.hpp"
 
 
@@ -42,11 +43,12 @@ T calculadora<T>::eval(istream& expresion)
 {
  
    
-  T aux;
+   T aux;
    T op1;
    T op2;
    T operando; 
    T resultado;
+   T elevado;
    char op; 
    char parentesis, comillas;
 
@@ -133,7 +135,18 @@ T calculadora<T>::eval(istream& expresion)
                         op2 = pila_.pop();
                         pila_.push(op1 * op2);
         
-                    break; 
+                    break;
+                    case '^':
+                        op1 = pila_.pop();
+                        op2 = pila_.pop();
+                        elevado = 1;
+                        for(int i = 0; i<op2; i++)
+                        {
+                            elevado = elevado * op1;
+                        }
+                        pila_.push(elevado);
+        
+                    break;
         
                 }
              }
