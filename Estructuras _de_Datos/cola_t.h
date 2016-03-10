@@ -15,6 +15,6 @@ class cola_t
         TDATO get(void);
         bool empty(void);
         void clean(void);
-        ostream&write(ostream& os);
+        ostream& write(ostream& os);
     
 };
