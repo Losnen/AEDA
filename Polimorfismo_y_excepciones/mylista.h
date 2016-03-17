@@ -1,5 +1,5 @@
 #pragma once
-#include "tnodo.hpp"
+#include "mynodo.h"
 #include <iostream>
 #include <cstdio>
 
@@ -78,8 +78,17 @@ void mylista<T>::insert_begin(mynodo<T>* aux)
 	}
 	else 
 	{ 
-        aux->set_next(head_);
-	    head_=aux;
+		try
+    	{
+			aux->set_next(head_);
+		 	head_=aux;
+    	} 
+      	catch(std::bad_alloc& ba)
+    	{
+      		std::cerr << ba.what() << std::endl;
+      		exit(1);
+    	}
+        
 	}
 }
 
@@ -93,48 +102,78 @@ void mylista<T>::insert_end(mynodo<T>* aux)
 	}
 	else 
 	{
-	    tail_->set_next(aux);
-	    tail_=aux;
+		try
+    	{
+			tail_->set_next(aux);
+	    	tail_=aux;
+    	} 
+      	catch(std::bad_alloc& ba)
+    	{
+      		std::cerr << ba.what() << std::endl;
+      		exit(1);
+    	}
 	}
 }
 
 template <class T>
 mynodo<T>* mylista<T>::extract_begin(void)
 {
-    if(head_==tail_)
-	{
-		mynodo<T>* aux=head_;
-		head_=NULL;
-		tail_=NULL;
-		return aux;
+    try
+    {
+        if(empty()) {throw "Vacío";}
+        
+        if(head_==tail_)
+		{
+			mynodo<T>* aux=head_;
+			head_=NULL;
+			tail_=NULL;
+			return aux;
+		}
+		else
+		{
+			mynodo<T>* aux = head_;
+			head_=head_->get_next();
+			return aux;
+		}
+		
 	}
-	else
+	catch(const char* a)
 	{
-		mynodo<T>* aux = head_;
-		head_=head_->get_next();
-		return aux;
+		cerr << "Error al obtener el elemento ya que la lista está vacía." << endl;
+		exit(1);
 	}
+    
 }
 
 template <class T>
 mynodo<T>* mylista<T>::extract_end(void)
 {
-    if(head_==tail_)
+	try
 	{
-		mynodo<T>* aux=head_;
-		head_=NULL;
-		tail_=NULL;
-		return aux;
+		if(empty()) {throw "Vacío";}
+	
+	    if(head_==tail_)
+		{
+			mynodo<T>* aux=head_;
+			head_=NULL;
+			tail_=NULL;
+			return aux;
+		}
+		else
+		{
+			mynodo<T>* aux=head_;
+			while(aux->get_next() != tail_)
+				aux=aux->get_next();
+		    
+		    tail_= aux;
+		    aux=aux->get_next();
+		    tail_->set_next(NULL);
+		    return aux;
+		}
 	}
-	else
+	catch(const char* a)
 	{
-		mynodo<T>* aux=head_;
-		while(aux->get_next() != tail_)
-			aux=aux->get_next();
-	    
-	    tail_= aux;
-	    aux=aux->get_next();
-	    tail_->set_next(NULL);
-	    return aux;
+		cerr << "Error al obtener el elemento ya que la lista está vacía." << endl;
+		exit(1);
 	}
 }

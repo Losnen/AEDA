@@ -1,5 +1,6 @@
 #include "reales.h"
 #include <cmath>
+
 real::real(void):
 numero(0)
 {}
@@ -33,6 +34,22 @@ real& real::operator=(const float& n)
   return *this;
 }
 
+ostream& real::toStream(ostream& sout) const
+{
+  sout << numero;
+  
+  return sout;
+}
+
+istream& real::fromStream(istream& sin)
+{
+  sin >> numero;
+  
+  return sin;
+}
+
+//*************************SOBRECARGA DE OPERADORES "AMIGOS*******************************
+//Aritméticos
 real operator+(const real& a, const real& b)
 {
   return real(a.get_numero() + b.get_numero());
@@ -50,10 +67,19 @@ real operator*(const real& a, const real& b)
 
 real operator/(const real& a, const real& b)
 {
-  return real(a.get_numero() / b.get_numero());
+  try {
+    if(!b.get_numero()) throw 1;
+    
+    return real(a.get_numero()/b.get_numero());
+    } 
+  catch(int a)
+  {
+    cout << "***ERROR*** [División por cero]\nEl resultado se igualará a 0 pero correctamente tiende a infinito." << endl;
+    return 000;
+  }
 }
 
-
+//comparación
 bool operator==(const real& a, const real& b)
 {
   return(fabs(a.get_numero()-b.get_numero()) < EPSILON ? true:false);
@@ -88,7 +114,7 @@ bool operator>=(const real& a, const real& b)
   return(a<b ? false:true);
 }
 
-
+//Entrada-Salida
 ostream& operator<<(ostream& os, const real& a)
 {
   os << a.get_numero();

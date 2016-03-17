@@ -28,6 +28,20 @@ entero& entero::operator=(const int& n)
     return *this; 
 }
 
+ostream& entero::toStream(ostream& sout) const
+{
+  sout << numero_;
+  
+  return sout;
+}
+
+istream& entero::fromStream(istream& sin)
+{
+  sin >> numero_;
+  
+  return sin;
+}
+
 entero operator+(const entero& a, const entero& b)
 {
     return a.get_numero() + b.get_numero();
@@ -116,3 +130,4 @@ istream& operator>>(istream& is, entero& a)
   a = aux;
   return is;
 }
+

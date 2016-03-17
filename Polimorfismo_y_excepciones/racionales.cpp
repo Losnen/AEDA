@@ -1,11 +1,9 @@
 #include "racionales.h"
-#include <cmath>
-
-
+#include "cmath"
 
 racional::racional(void):
-numerador(),
-denominador()
+numerador(1),
+denominador(2)
 {}
 
 racional::racional(entero dio, entero dir):
@@ -13,23 +11,40 @@ numerador(dio),
 denominador(dir),
 mcd(m_d())
 {
-  numerador = numerador/mcd;
-  denominador = denominador/mcd;
+  try
+  {
+    if(!denominador.get_numero()) { throw "ERRORACO DEL 15"; }
+
+    mcd = m_d();
+    numerador = numerador/mcd;
+    denominador = denominador/mcd;
+  } 
+  catch(const char* a)
+  {
+    cerr << "ERROR, SE HA INTRODUCIDO UN NÚMERO CON DENOMINADOR 0" << endl;
+  }
+
 }
-
-
-racional::racional(int n):
-numerador(n),
-denominador(1)
-{}
 
 racional::racional(int dio, int dir):
 numerador(entero(dio)),
 denominador(entero(dir)),
 mcd(m_d())
 {
-  numerador = numerador/mcd;
-  denominador = denominador/mcd;
+  try
+  {
+      if(!denominador.get_numero()) throw "ERRORACO DEL 15";
+
+      mcd = m_d();
+      numerador = numerador/mcd;
+      denominador = denominador/mcd;
+  } 
+  catch(const char* a)
+  {
+      cerr << "ERROR, SE HA INTRODUCIDO UN NÚMERO CON DENOMINADOR 0" << endl;
+      exit(0);
+  }
+
 }
 
 racional::racional(const racional& n) 
@@ -57,56 +72,108 @@ racional& racional::operator=(const racional& a)
   
   return *this;
 }
-racional& racional::operator=(int n)
-{
-  numerador = n;
-  denominador = 1;
-  return *this;
-}
-
-
 
 racional& racional::operator=(const string a)
 {
-  size_t found = a.find("/");
+    try
+    {
+      size_t found = a.find("/");
+    
+      string b,c;
+      b.resize(found);
+      c.resize((a.size() - found)-1);
+      for(unsigned int i=0;i<found;i++) 
+      {
+        b[i] = a[i];
+      }
+      for(unsigned int j=0;j<c.size();j++) 
+      {
+        c[j] = a[j+1+found];
+      }
   
-  string b,c;
-  b.resize(found);
-  c.resize((a.size() - found)-1);
-  for(unsigned int i=0;i<found;i++) {
+      numerador = atoi(b.c_str());
+      denominador = atoi(c.c_str());
   
-   b[i] = a[i];
-  }
-  for(unsigned int j=0;j<c.size();j++) {
-  
-    c[j] = a[j+1+found];
-  }
-  
-  numerador = atoi(b.c_str());
-  denominador = atoi(c.c_str());
-  mcd=m_d();
-  numerador = numerador/mcd;
-  denominador = denominador/mcd;
+      if(!denominador.get_numero()||!numerador.get_numero()) throw 1; 
+
+      
+      mcd = m_d();
+      numerador = numerador/mcd;
+      denominador = denominador/mcd;
+      return *this;
+   } 
+    catch(int a)
+    {
+      cerr << "ERROR, SE HA INTRODUCIDO UN NÚMERO CON DENOMINADOR 0" << endl;
+    }
   
 }
 
-entero racional::m_d(void) const 
+entero racional::m_d(void) const //algoritmo de Euclides
 {
-  entero resto, numerador_aux, resto_aux;
-  
-  resto = numerador.get_numero()%denominador.get_numero();
-  numerador_aux = denominador;
-  
-  while(resto!=0)
-  {
-   resto_aux = resto;
-   resto = numerador_aux.get_numero()%resto.get_numero();
-   numerador_aux = resto_aux;
-  }
-  
-  return numerador_aux;
+    entero resto, numerador_aux, resto_aux;
+    
+    resto = numerador.get_numero()%denominador.get_numero();
+    numerador_aux = denominador;
+    
+    while(resto!=0)
+    {
+     resto_aux = resto;
+     resto = numerador_aux.get_numero()%resto.get_numero();
+     numerador_aux = resto_aux;
+    }
+    
+    return numerador_aux;
 }
 
+ostream& racional::toStream(ostream& sout) const
+{
+    numerador.toStream(cout);
+    cout << "/";
+    denominador.toStream(cout);
+  
+    return sout;
+}
+
+istream& racional::fromStream(istream& sin)
+{
+    string a;
+    sin >> a;
+  
+    try
+    {
+      size_t found = a.find("/");
+    
+      string b,c;
+      b.resize(found);
+      c.resize((a.size() - found)-1);
+      for(unsigned int i=0;i<found;i++) 
+      {
+        b[i] = a[i];
+      }
+      for(unsigned int j=0;j<c.size();j++) 
+      {
+        c[j] = a[j+1+found];
+      }
+    
+      numerador = atoi(b.c_str());
+      denominador = atoi(c.c_str());
+    
+      if(!denominador.get_numero()||!numerador.get_numero()) throw 1; 
+      mcd = m_d();
+      numerador = numerador/mcd;
+      denominador = denominador/mcd;
+     } 
+    catch(int a)
+    {
+      cerr << "ERROR, SE HA INTRODUCIDO UN NÚMERO CON DENOMINADOR 0" << endl;
+    }
+  
+  return sin;
+}
+
+//*************************SOBRECARGA DE OPERADORES "AMIGOS*******************************
+//Aritméticos
 racional operator+(const racional& a, const racional& b)
 {  
   return racional(a.get_numerador()*b.get_denominador() + b.get_numerador()*a.get_denominador(),a.get_denominador()*b.get_denominador());
@@ -126,7 +193,6 @@ racional operator/(const racional& a, const racional& b)
 {
   return racional(a.get_numerador()*b.get_denominador(),a.get_denominador()*b.get_numerador());
 }
-
 
 bool operator==(const racional& a, const racional& b)
 {
@@ -181,10 +247,7 @@ bool operator>=(const racional& a, const racional& b)
 
 ostream& operator<<(ostream& os, const racional& a)
 {
-  if ((a.get_numerador() == 0) && (a.get_denominador() == 1))
-    os << 0; 
-  else
-      os << a.get_numerador() << "/" << a.get_denominador();
+  os << a.get_numerador() << "/" << a.get_denominador();
   return os;
 }
 

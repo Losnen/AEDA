@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
+#include "numero.h"
 
 using namespace std;
 
-class entero 
+class entero: public numero_t
 {
     private:
         int numero_;
@@ -17,6 +18,9 @@ class entero
           
         entero& operator=(const entero&);
         entero& operator=(const int& n);
+        
+        virtual ostream& toStream(ostream& sout) const;
+        virtual istream& fromStream(istream& sin);
           
         friend entero operator+(const entero&, const entero&);
         friend entero operator-(const entero&, const entero&);
@@ -31,5 +35,5 @@ class entero
         friend bool operator>=(const entero&, const entero&);
           
         friend ostream& operator<<(ostream&, const entero&);
-       friend istream& operator>>(istream&,entero&);
+        friend istream& operator>>(istream&,entero&);
 };

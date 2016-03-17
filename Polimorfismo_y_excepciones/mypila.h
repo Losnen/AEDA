@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
-#include "tlista.hpp"
+#include "mylista.h"
 
 using namespace std;
 
@@ -37,16 +37,34 @@ mypila<T>::~mypila(void)
 template <class T>
 void mypila<T>::push(T dato)
 {
-    l_.insert_begin(new mynodo<T>(dato));
+    try
+    {
+        l_.insert_begin(new  mynodo<T>(dato));
+    } 
+    catch(bad_alloc& ba)
+    {
+        cerr << ba.what() << endl;
+        exit(1);
+    }
+
 }
 
 template <class T>
 char mypila<T>::pop(void)
 {
-    mynodo<T>* nodo_aux = l_.extract_begin();
-    T aux = nodo_aux->get_dato();
-    delete nodo_aux;
-    return aux;
+    try
+    {
+        if(empty()) {throw "Lista está vacía"; }
+        mynodo<T>* nodo_aux = l_.extract_begin();
+        T aux = nodo_aux->get_dato();
+        delete nodo_aux;
+        return aux;
+    } 
+    catch(const char* a)
+    {
+        cerr << "ERROR: LA PILA ESTÁ VACÍA" << endl;
+        exit(1);
+    }
 }
 
 template <class T>

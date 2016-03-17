@@ -1,13 +1,14 @@
 #pragma once
 #include <iostream>
-#include "enteros.h"
 #include <cstring>
 #include <string>
 #include <cstdlib>
 
+#include "enteros.h"
+#include "numero.h"
 
 
-class racional {
+class racional:public numero_t {
 
 private:
   entero numerador;
@@ -18,7 +19,6 @@ public:
   
   racional(void);
   racional(entero num, entero den);
-  racional(int n);
   racional(const racional& n);
   racional(int dio, int dir);
   ~racional(void);
@@ -27,17 +27,17 @@ public:
   entero get_denominador(void) const;
   entero m_d(void) const;
   
+  virtual ostream& toStream(ostream& sout) const;  
+  virtual istream& fromStream(istream& sin);
   
   racional& operator=(const racional&);
   racional& operator=(const string cad);
-  racional& operator=(int n);
-
+  
   friend racional operator+(const racional&, const racional&);
   friend racional operator-(const racional&, const racional&);
   friend racional operator*(const racional&, const racional&);
   friend racional operator/(const racional&, const racional&);
   
-
   friend bool operator==(const racional&, const racional&);
   friend bool operator!=(const racional&, const racional&);
   friend bool operator<(const racional&, const racional&);
@@ -47,6 +47,6 @@ public:
   
 
   friend ostream& operator<<(ostream&, const racional&);
-  friend istream& operator>>(istream&, racional&);
+  friend istream& operator>>(istream&, const racional&);
   
 };

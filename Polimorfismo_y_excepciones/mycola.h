@@ -1,3 +1,7 @@
+#pragma once
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
 #include "mylista.h"
 
 
@@ -34,16 +38,35 @@ mycola<T>::~mycola(void)
 template <class T>
 void mycola<T>::put(T dato)
 {
-    l_.insert_begin(new nodo_t(dato));
+    try
+    {
+        l_.insert_begin(new  mynodo<T>(dato));
+    } 
+    catch(bad_alloc& ba)
+    {
+        cerr << ba.what() << endl;
+        exit(1);
+    }
+
 }
 
 template <class T>
 T mycola<T>::get(void)
 {
-    nodo_t* nodo_aux = (nodo_t*)(l_.extract_end());
-    TDATO aux = nodo_aux->get_dato();
-    delete nodo_aux;
-    return aux;
+    try
+    {
+        if(empty()) {throw "L está vacía"; }
+        mynodo<T>* nodo_aux = l_.extract_end();
+        T aux = nodo_aux->get_dato();
+        delete nodo_aux;
+        return aux;
+    } 
+    catch(const char* a)
+    {
+        cerr << "ERROR LA COLA ESTÁ VACÍA" << endl;
+        exit(1);
+    }
+    
 }
 
 template <class T>

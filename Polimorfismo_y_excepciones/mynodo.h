@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <cstdio>
+#include <new>
+#include <stdexcept>  
 
 using namespace std;
 
@@ -21,16 +23,6 @@ class mynodo
         void set_dato(T dato);
         ostream& write(ostream& os);
 };
-
-/*
-template <class T> // Definicion de la clase
-T mypair<T>::get_max(void)
-{
-    T aux;
-    aux = a>b?a:b;
-    return aux;
-}
-*/
 
 template <class T>
 mynodo<T>::mynodo(void):

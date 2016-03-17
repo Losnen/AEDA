@@ -1,5 +1,4 @@
 #include "complejos.h"
-#include <cmath>
 
 complejo::complejo(void):
 r(),
@@ -26,11 +25,6 @@ i(real(im))
   m = r*r+i*i;
 }
 
-complejo::complejo(float n):
-r(n),
-i(0.0)
-{}
-
 complejo::~complejo(void){}
 
 real complejo::get_r(void) const
@@ -56,14 +50,6 @@ complejo& complejo::operator=(const complejo& a)
   return *this;
 }
 
-complejo& complejo::operator=(int n)
-{
-  r = -1;
-  i = i;
-  
-  return *this;
-}
-
 complejo& complejo::operator=(const string a)
 {
   size_t found = a.find("+");
@@ -84,7 +70,43 @@ complejo& complejo::operator=(const string a)
   i = atof(c.c_str());
 }
 
+ostream& complejo::toStream(ostream& sout) const
+{
+  r.toStream(cout);
+  i.toStream(cout << "+");
+  cout << "i";
+  return sout;
+}
 
+istream& complejo::fromStream(istream& sin)
+{
+  string a;
+  sin >> a;
+  
+  size_t found = a.find("+");
+  
+  string b,c;
+  b.resize(found);
+  c.resize((a.size() - found)-2);
+  for(unsigned int k=0;k<found;k++) {
+  
+   b[k] = a[k];
+  }
+  for(unsigned int j=0;j<c.size();j++) {
+  
+    c[j] = a[j+1+found];
+  }
+  
+  r = atof(b.c_str());
+  i = atof(c.c_str());
+  
+  return sin;
+}
+
+
+//----------------------------OPERADORES SOBRECARGADOS AMIGOS----------------------------------------
+
+//Aritméticos
 complejo operator+(const complejo& a, const complejo& b)
 {
   return complejo(a.get_r() + b.get_r(), a.get_i() + b.get_i());
@@ -97,23 +119,15 @@ complejo operator-(const complejo& a, const complejo& b)
 
 complejo operator*(const complejo& a, const complejo& b)
 {
-  if(b.get_i() == 0)
-  {
-    return complejo((a.get_r() * b.get_r()), a.get_i()); 
-  }
-  else
-    return complejo((a.get_r() * b.get_r()) - (a.get_i() * a.get_i()), a.get_r()*b.get_i() + a.get_i()*b.get_r());//(a + bi) * (c + di) = (ac − bd) + (ad + bc)i
-  
+  return complejo((a.get_r() * b.get_r()) - (a.get_i() * a.get_i()), a.get_r()*b.get_i() + a.get_i()*b.get_r());//(a + bi) * (c + di) = (ac − bd) + (ad + bc)i
 }
-
-
 
 complejo operator/(const complejo& a, const complejo& b)
 {
   return complejo((a.get_r()*b.get_r() + a.get_i()*b.get_i())/(b.get_r()*b.get_r()+b.get_i()*b.get_i()), (a.get_i()*b.get_r()-a.get_r()*b.get_i())/(b.get_r()*b.get_r()+b.get_i()*b.get_i()));
 }
 
-
+//comparación
 bool operator==(const complejo& a, const complejo& b)
 {
   return(fabs(((a.get_m()-b.get_m()).get_numero())) < EPSILON ? true:false);
@@ -148,20 +162,23 @@ bool operator>=(const complejo& a, const complejo& b)
   return(a<b ? false:true);
 }
 
-
-ostream& operator<<(ostream& os, complejo& a)
+//Entrada-Salida
+ostream& operator<<(ostream& os, const complejo& a)
 {
-  os << " " << a.get_r() << "+" << a.get_i() << "i";
+  os << "[" << a.get_r() << "+" << a.get_i() << "i]";
   return os;
 }
 
 istream& operator>>(istream& is, complejo& a)
 {
   float re, im;
+  cout << "Parte real:";
   is >> re;
   
+  cout << "Parte imaginaria:";
   is >> im;
   cout << endl;
+  
   a = complejo(re, im);
   return is;
 }
