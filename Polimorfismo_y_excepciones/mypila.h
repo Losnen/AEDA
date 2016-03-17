@@ -21,6 +21,7 @@ class mypila
 	    bool empty(void);
 	    void clean(void);
 	    ostream& write(ostream& os);
+        ostream& imprime_numero(ostream& os);
 };
 
 template <class T>
@@ -84,4 +85,15 @@ ostream& mypila<T>::write(ostream& os)
 {
     l_.write(os);
     return os;   
+}
+template <>
+ostream& mypila<numero_t*>::imprime_numero(ostream& os)
+{
+    mynodo<numero_t*>* aux;
+    while(!l_.empty())
+    {
+        aux = l_.extract_end();
+        aux->get_dato()->toStream(cout);
+        cout << " ";
+    }
 }

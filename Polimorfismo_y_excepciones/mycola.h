@@ -21,6 +21,8 @@ class mycola
         bool empty(void);
         void clean(void);
         ostream& write(ostream& os);
+        ostream& imprime_numero(ostream& os);
+
     
 };
 
@@ -86,4 +88,10 @@ ostream& mycola<T>::write(ostream& os)
 {
    l_.write(os);
     return os; 
+}
+
+template <>
+ostream& mycola<numero_t*>::imprime_numero(ostream& os)
+{
+    l_.imprime_numero(os);
 }

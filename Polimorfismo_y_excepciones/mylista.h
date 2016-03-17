@@ -22,6 +22,7 @@ class mylista
     void insert_end(mynodo<T>* aux);
     mynodo<T>* extract_begin(void);
     mynodo<T>* extract_end(void);
+    ostream& imprime_numero(ostream& os);
 
 };
 
@@ -176,4 +177,18 @@ mynodo<T>* mylista<T>::extract_end(void)
 		cerr << "Error al obtener el elemento ya que la lista está vacía." << endl;
 		exit(1);
 	}
+}
+
+template <>
+ostream& mylista<numero_t*>::imprime_numero(ostream& os)
+{
+	mynodo<numero_t*>* aux = head_;
+  
+  	while(aux != NULL) 
+  	{
+  		aux->get_dato()->toStream(os);
+    	cout<< " ";
+    	aux= aux->get_next();
+  	}
+  
 }

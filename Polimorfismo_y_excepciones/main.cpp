@@ -22,7 +22,7 @@ int main (void)
    	mypila<numero_t*> 	pila; 
 	mycola<numero_t*> 	cola;
    	
-	A[0] = new entero(2);
+	A[0] = new entero(1);
 	L.insert_begin(new mynodo<numero_t*>(new entero(1)));
 	pila.push(new entero(1));
 	cola.put(new entero(1));
@@ -42,4 +42,13 @@ int main (void)
 	L.insert_begin(new mynodo<numero_t*>(new complejo(1.5,2.76)));
 	pila.push(new complejo(1.5,2.76));
 	cola.put(new complejo(1.5,2.76));
+	
+	A.imprime_numero(cout);
+	cout << endl;
+	L.imprime_numero(cout);
+	cout << endl;
+	pila.imprime_numero(cout);
+	cout << endl;
+	cola.imprime_numero(cout);
+	cout << endl;
 }

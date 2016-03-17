@@ -27,6 +27,7 @@ class myvector
         T& operator[](int pos);
         T operator[](int pos) const;
         void write(void);
+        ostream& imprime_numero(ostream& os);
         
         private:
         void build(int sz);
@@ -152,5 +153,16 @@ void myvector<T>::clean(void)
         v_ = NULL;
         sz_ = 0;
     }
+}
+
+template <>
+ostream& myvector<numero_t*>::imprime_numero(ostream& os)
+{
+    for(int i = 0; i<sz_;i++) 
+    {
+        v_[i]->toStream(os);
+        cout << " ";
+    }
+	return os;
 }
 
