@@ -64,6 +64,12 @@ entero racional::get_denominador(void) const
   return denominador;
 }
 
+const entero racional::toEntero(void) const
+{
+  entero a(get_numerador() / get_denominador());
+  return a;
+}
+
 racional& racional::operator=(const racional& a)
 {
   numerador = a.get_numerador();

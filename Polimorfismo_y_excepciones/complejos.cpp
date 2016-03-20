@@ -42,6 +42,13 @@ real complejo::get_m(void) const
   return m;
 }
 
+const entero complejo::toEntero(void) const
+{
+  real b(get_r());
+  entero a(b.get_numero());
+  return a;
+}
+
 complejo& complejo::operator=(const complejo& a)
 {
   i = a.get_i();

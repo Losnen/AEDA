@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "enteros.h"
 #include "numero.h"
 
 #define EPSILON 0.000000001
@@ -21,6 +22,8 @@ public:
   ~real(void);
   
   float get_numero(void) const;
+  
+  virtual const entero toEntero(void) const;
   virtual ostream& toStream(ostream& sout) const;  
   virtual istream& fromStream(istream& sin);
   

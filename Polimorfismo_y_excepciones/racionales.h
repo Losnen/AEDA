@@ -27,6 +27,7 @@ public:
   entero get_denominador(void) const;
   entero m_d(void) const;
   
+  virtual const entero toEntero(void) const;
   virtual ostream& toStream(ostream& sout) const;  
   virtual istream& fromStream(istream& sin);
   

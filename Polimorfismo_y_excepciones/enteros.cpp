@@ -16,6 +16,11 @@ int entero::get_numero(void) const
     return numero_;
 }
 
+const entero entero::toEntero(void) const
+{
+    return numero_;   
+}
+
 entero& entero::operator=(const entero& n)
 {
     numero_ = n.get_numero();

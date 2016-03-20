@@ -23,6 +23,8 @@ public:
   real get_r(void) const;
   real get_i(void) const;
   real get_m(void) const;
+  
+  virtual const entero toEntero(void) const;
   virtual ostream& toStream(ostream& sout) const;                 // Escribe un Numero al flujo sout
   virtual istream& fromStream(istream& sin);                      // Lee un Numero desde flujo sin
   

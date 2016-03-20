@@ -19,6 +19,7 @@ class entero: public numero_t
         entero& operator=(const entero&);
         entero& operator=(const int& n);
         
+        virtual const entero toEntero(void) const;
         virtual ostream& toStream(ostream& sout) const;
         virtual istream& fromStream(istream& sin);
           

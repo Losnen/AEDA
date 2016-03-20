@@ -16,6 +16,13 @@ real::real(const real& n)
 
 real::~real(void){}
 
+const entero real::toEntero(void) const
+{
+  int num = get_numero();
+  entero a(num);
+  return a;
+}
+
 float real::get_numero(void) const
 {
   return numero;
