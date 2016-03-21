@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "reales.h"
 #include "numero.h"
 
 using namespace std;
@@ -20,6 +21,7 @@ class entero: public numero_t
         entero& operator=(const int& n);
         
         virtual const entero toEntero(void) const;
+        virtual const real toReal(void) const;
         virtual ostream& toStream(ostream& sout) const;
         virtual istream& fromStream(istream& sin);
           

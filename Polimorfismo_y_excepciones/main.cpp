@@ -22,13 +22,24 @@ int main (void)
    	mypila<numero_t*> 	pila; 
 	mycola<numero_t*> 	cola;
    	
+   	
    	numero_t* n1 = new racional(7,3);
    	numero_t* n2 = new real(8.3);
    	numero_t* n3 = new complejo(3.3,2);
+   	numero_t* n4 = new entero(1);
    	
+   	cout << "Procedimiento toEntero" << endl;
+   	cout << n4->toEntero() << endl;
    	cout << n1->toEntero() << endl;
    	cout << n2->toEntero() << endl;
    	cout << n3->toEntero() << endl;
+   	
+   	cout << "Procedimiento toReal" << endl;
+   	cout << n4->toReal() << endl;
+   	cout << n1->toReal() << endl;
+   	cout << n2->toReal() << endl;
+   	cout << n3->toReal() << endl;
+   	
    	
 	A[0] = new entero(1);
 	L.insert_begin(new mynodo<numero_t*>(new entero(1)));

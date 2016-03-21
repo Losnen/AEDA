@@ -23,6 +23,12 @@ const entero real::toEntero(void) const
   return a;
 }
 
+const real real::toReal(void) const
+{
+  real a(get_numero());
+  return a;
+}
+
 float real::get_numero(void) const
 {
   return numero;

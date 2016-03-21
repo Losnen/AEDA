@@ -21,6 +21,12 @@ const entero entero::toEntero(void) const
     return numero_;   
 }
 
+const real entero::toReal(void) const
+{
+    real a(get_numero());
+    return a;
+}
+
 entero& entero::operator=(const entero& n)
 {
     numero_ = n.get_numero();

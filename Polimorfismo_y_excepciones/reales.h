@@ -24,6 +24,7 @@ public:
   float get_numero(void) const;
   
   virtual const entero toEntero(void) const;
+  virtual const real toReal(void) const;
   virtual ostream& toStream(ostream& sout) const;  
   virtual istream& fromStream(istream& sin);
   
