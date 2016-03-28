@@ -27,6 +27,7 @@ int main (void)
    	numero_t* n2 = new real(8.3);
    	numero_t* n3 = new complejo(3.3,2);
    	numero_t* n4 = new entero(1);
+   	numero_t* n5 = new real(9.3);
    	
    	cout << "Procedimiento toEntero" << endl;
    	cout << n4->toEntero() << endl;
@@ -37,9 +38,14 @@ int main (void)
    	cout << "Procedimiento toReal" << endl;
    	cout << n4->toReal() << endl;
    	cout << n1->toReal() << endl;
-   	cout << n2->toReal() << endl;
+   	cout << n5->toReal() << endl;
    	cout << n3->toReal() << endl;
    	
+   	cout << "Procedimiento toRacional" << endl;
+   	cout << n4->toRacional() << endl;
+   	cout << n1->toRacional() << endl;
+   	cout << n2->toRacional() << endl;
+   	cout << n3->toRacional() << endl;
    	
 	A[0] = new entero(1);
 	L.insert_begin(new mynodo<numero_t*>(new entero(1)));

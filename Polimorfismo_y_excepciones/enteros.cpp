@@ -1,4 +1,5 @@
 #include "enteros.h"
+#include "racionales.h"
 
 entero::entero(void):
 numero_(0)
@@ -24,6 +25,12 @@ const entero entero::toEntero(void) const
 const real entero::toReal(void) const
 {
     real a(get_numero());
+    return a;
+}
+
+const racional entero::toRacional(void) const
+{
+    racional a(get_numero(),1);
     return a;
 }
 

@@ -77,6 +77,13 @@ const real racional::toReal(void) const
   return a;
 }
 
+const racional racional::toRacional(void) const
+{
+   racional a(get_numerador(),get_denominador());
+   return a;
+}
+
+
 racional& racional::operator=(const racional& a)
 {
   numerador = a.get_numerador();

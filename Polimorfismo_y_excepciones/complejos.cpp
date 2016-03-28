@@ -1,4 +1,5 @@
 #include "complejos.h"
+#include "racionales.h"
 
 complejo::complejo(void):
 r(),
@@ -54,6 +55,14 @@ const real complejo::toReal(void) const
   real a(get_r());
   return a;
 }
+
+const racional complejo::toRacional(void) const
+{
+  real b(get_r());
+  racional a(b.get_numero(),1);
+  return a;
+}
+
 
 complejo& complejo::operator=(const complejo& a)
 {

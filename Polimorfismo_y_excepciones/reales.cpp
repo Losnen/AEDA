@@ -1,4 +1,6 @@
 #include "reales.h"
+#include "racionales.h"
+
 #include <cmath>
 
 real::real(void):
@@ -28,6 +30,15 @@ const real real::toReal(void) const
   real a(get_numero());
   return a;
 }
+
+const racional real::toRacional(void) const
+{
+    float num = get_numero();
+    num = num * 10000; 
+    racional a(num,10000);
+    return a;
+}
+
 
 float real::get_numero(void) const
 {
@@ -61,8 +72,7 @@ istream& real::fromStream(istream& sin)
   return sin;
 }
 
-//*************************SOBRECARGA DE OPERADORES "AMIGOS*******************************
-//Aritméticos
+
 real operator+(const real& a, const real& b)
 {
   return real(a.get_numero() + b.get_numero());

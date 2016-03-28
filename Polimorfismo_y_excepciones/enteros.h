@@ -2,6 +2,7 @@
 #include <iostream>
 #include "reales.h"
 #include "numero.h"
+class racional;
 
 using namespace std;
 
@@ -22,6 +23,7 @@ class entero: public numero_t
         
         virtual const entero toEntero(void) const;
         virtual const real toReal(void) const;
+        virtual const racional toRacional(void) const;
         virtual ostream& toStream(ostream& sout) const;
         virtual istream& fromStream(istream& sin);
           

@@ -16,7 +16,7 @@ class numero_t
   public:
 
     virtual const entero toEntero(void) const = 0;
-    //virtual const racional toRacional(void) const = 0; 
+    virtual const racional toRacional(void) const = 0; 
     virtual const real toReal(void) const = 0; 
     //virtual const complejo toComplejo(void) const = 0; 
 
