@@ -22,32 +22,7 @@ int main (void)
    	mypila<numero_t*> 	pila; 
 	mycola<numero_t*> 	cola;
    	
-   	
-   	numero_t* n1 = new racional(7,3);
-   	numero_t* n2 = new real(8.3);
-   	numero_t* n3 = new complejo(3.3,2);
-   	numero_t* n4 = new entero(1);
-   	numero_t* n5 = new real(9.3);
-   	
-   	cout << "Procedimiento toEntero" << endl;
-   	cout << n4->toEntero() << endl;
-   	cout << n1->toEntero() << endl;
-   	cout << n2->toEntero() << endl;
-   	cout << n3->toEntero() << endl;
-   	
-   	cout << "Procedimiento toReal" << endl;
-   	cout << n4->toReal() << endl;
-   	cout << n1->toReal() << endl;
-   	cout << n5->toReal() << endl;
-   	cout << n3->toReal() << endl;
-   	
-   	cout << "Procedimiento toRacional" << endl;
-   	cout << n4->toRacional() << endl;
-   	cout << n1->toRacional() << endl;
-   	cout << n2->toRacional() << endl;
-   	cout << n3->toRacional() << endl;
-   	
-	A[0] = new entero(1);
+   	A[0] = new entero(1);
 	L.insert_begin(new mynodo<numero_t*>(new entero(1)));
 	pila.push(new entero(1));
 	cola.put(new entero(1));
@@ -67,8 +42,39 @@ int main (void)
 	L.insert_begin(new mynodo<numero_t*>(new complejo(1.5,2.76)));
 	pila.push(new complejo(1.5,2.76));
 	cola.put(new complejo(1.5,2.76));
+   	
+   	numero_t* n1 = new racional(7,3);
+   	numero_t* n2 = new real(8.3);
+   	numero_t* n3 = new complejo(3.3,2);
+   	numero_t* n4 = new entero(1);
+   	
+	cout << "AEDA Práctica 3: Polimorfismo y excepciones" << endl;
+   	cout << "Procedimiento toEntero" << endl;
+   	cout << n4->toEntero() << endl;
+   	cout << n1->toEntero() << endl;
+   	cout << n2->toEntero() << endl;
+   	cout << n3->toEntero() << endl;
+   	
+   	cout << "Procedimiento toReal" << endl;
+   	cout << n4->toReal() << endl;
+   	cout << n1->toReal() << endl;
+   	cout << n2->toReal() << endl;
+   	cout << n3->toReal() << endl;
+   	
+   	cout << "Procedimiento toRacional" << endl;
+   	cout << n4->toRacional() << endl;
+   	cout << n1->toRacional() << endl;
+   	cout << n2->toRacional() << endl;
+   	cout << n3->toRacional() << endl;
+   	
+   	cout << "Procedimiento toComplejo" << endl;
+   	cout << n4->toComplejo() << endl;
+   	cout << n1->toComplejo() << endl;
+   	cout << n2->toComplejo() << endl;
+   	cout << n3->toComplejo() << endl;
+   	
+
 	
-	/*cout << "AEDA Práctica 3: Polimorfismo y excepciones" << endl;
 	cout << "Vector de números" << endl;
 	A.imprime_numero(cout);
 	cout << endl;
@@ -80,5 +86,5 @@ int main (void)
 	cout << endl;
 	cout << "Cola de números" << endl;
 	cola.imprime_numero(cout);
-	cout << endl;*/
+	cout << endl;
 }

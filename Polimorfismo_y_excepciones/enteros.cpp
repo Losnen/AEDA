@@ -1,5 +1,7 @@
 #include "enteros.h"
 #include "racionales.h"
+#include "complejos.h"
+
 
 entero::entero(void):
 numero_(0)
@@ -31,6 +33,14 @@ const real entero::toReal(void) const
 const racional entero::toRacional(void) const
 {
     racional a(get_numero(),1);
+    return a;
+}
+
+const complejo entero::toComplejo(void) const
+{
+    real b(get_numero());
+    real c(0.0);
+    complejo a(b,c);
     return a;
 }
 
@@ -83,7 +93,18 @@ entero negar(const entero& a)
 
 entero operator/(const entero& a, const entero& b)
 {
-    return a.get_numero() / b.get_numero();    
+    return a.get_numero() / b.get_numero();   
+    
+    try {
+    if(!b.get_numero()) throw 1;
+    
+    return entero(a.get_numero()/b.get_numero());
+    } 
+  catch(int a)
+  {
+    cout << "Error, División por cero" << endl;
+    return 000;
+  }
 }
 
 bool operator==(const entero& a, const entero& b)

@@ -28,6 +28,7 @@ public:
   virtual const entero toEntero(void) const;
   virtual const real toReal(void) const;
   virtual const racional toRacional(void) const;
+  virtual const complejo toComplejo(void) const;
   virtual ostream& toStream(ostream& sout) const;                 // Escribe un Numero al flujo sout
   virtual istream& fromStream(istream& sin);                      // Lee un Numero desde flujo sin
   

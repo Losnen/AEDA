@@ -1,5 +1,6 @@
 #include "reales.h"
 #include "racionales.h"
+#include "complejos.h"
 
 #include <cmath>
 
@@ -39,6 +40,13 @@ const racional real::toRacional(void) const
     return a;
 }
 
+const complejo real::toComplejo(void) const
+{
+  real b(get_numero());
+  real c(0.0);
+  complejo a(b,c);
+  return a;
+}
 
 float real::get_numero(void) const
 {

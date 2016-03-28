@@ -1,5 +1,7 @@
 #include "racionales.h"
 #include "cmath"
+#include "complejos.h"
+
 
 racional::racional(void):
 numerador(1),
@@ -83,6 +85,15 @@ const racional racional::toRacional(void) const
    return a;
 }
 
+const complejo racional::toComplejo(void) const
+{
+  entero d(get_denominador());
+  entero n(get_numerador());
+  real b(n.get_numero() / d.get_numero());
+  real c(0.0);
+  complejo a(b,c);
+  return a;
+}
 
 racional& racional::operator=(const racional& a)
 {
