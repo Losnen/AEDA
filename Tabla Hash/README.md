@@ -5,7 +5,7 @@
 
 2. Realizar un análisis del rendimiento de la tabla de hashing con distintas funciones de dispersión, distintas estrategias de exploración y distintos factores de carga. En este análisis se incluye el estudio del comportamiento para las funciones de dispersión: módulo y pseudoaleatoria; y para las estrategias de exploración: lineal, cuadrática, dispersión doble y redispersión.
 
-##nunciado
+##Enunciado
 + Desarrollar en lenguaje C++ la plantilla de clases TablaHash < clave > que implemente las siguientes operaciones:
 * Buscar(Clave X): retorna el valor booleano true si la clave X está guardada en la tabla de hashing. En otro caso retorna false.
 * Insertar(Clave X): retorna el valor booleano true si se añade la clave X a la tabla de hashing. En otro caso retorna false.
@@ -52,7 +52,7 @@ bloque es un parámetro de los constructores de la tabla y la celda.
 * Realizar la búsqueda de nPruebas claves extraidas de forma aleatoria de las N claves del banco de prueba que no están guardadas en la tabla hash. Para cada búsqueda se cuenta el número de comparaciones realizadas, y se actualizan los valores mínimo, máximo y acumulado.
 * Al finalizar el experimento se presentan los valores mínimo, máximo y medio del número de comparaciones de claves contabilizados.
 
-##A continuación se muestra el formato de salida con los resultados de la ejecución:
+###A continuación se muestra el formato de salida con los resultados de la ejecución:
 
 
 <table>
