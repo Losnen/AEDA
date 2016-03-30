@@ -87,30 +87,4 @@ int main (void)
 	cout << "Cola de números" << endl;
 	cola.imprime_numero(cout);
 	cout << endl;
-	
-	cout << "Probando excepciones" << endl;
-	entero e1(2);
-	entero e2(0);
-	
-	entero e3 = e1/e2;
-	cout <<"Solucion: " << e3 << endl;
-	
-	mypila<numero_t*> p;
-	
-	p.push(new entero(1));
-	p.push(new complejo(3,2));
-	p.push(new real(1.2));
-	p.push(new entero(1));
-	
-	entero acc;
-	numero_t* aux;
-	
-	for (int i = 0; i < 4; i++) 
-	{
-		aux = p.pop();
-		acc = acc + aux->toEntero();
-	}
-		
-	
-	cout << "Resultado suma pila: " << acc << endl;
 }

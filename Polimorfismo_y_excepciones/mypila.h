@@ -17,7 +17,7 @@ class mypila
         mypila(void);
         ~mypila(void);
 	    void push(T dato);
-	    char pop(void);
+	    T pop(void);
 	    bool empty(void);
 	    void clean(void);
 	    ostream& write(ostream& os);
@@ -51,7 +51,7 @@ void mypila<T>::push(T dato)
 }
 
 template <class T>
-char mypila<T>::pop(void)
+T mypila<T>::pop(void)
 {
     try
     {

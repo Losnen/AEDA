@@ -15,7 +15,8 @@ mcd(m_d())
 {
   try
   {
-    if(!denominador.get_numero()) { throw "ERRORACO DEL 15"; }
+
+    if(!denominador.get_numero()) { throw "Error"; }
 
     mcd = m_d();
     numerador = numerador/mcd;
@@ -35,11 +36,34 @@ mcd(m_d())
 {
   try
   {
-      if(!denominador.get_numero()) throw "ERRORACO DEL 15";
+      int r;
+    
+      if(dio == 0) 
+      {
+        cout << "HA introducido un numero con denominador 0, ¿Desea que el denominador sea 1? (si/no) = (1/0): " << endl;
+        cin >> r;
 
-      mcd = m_d();
-      numerador = numerador/mcd;
-      denominador = denominador/mcd;
+        if(r==1)
+        {
+          numerador = numerador;
+          denominador = 1; 
+          mcd = m_d();
+          numerador = numerador/mcd;
+          denominador = denominador/mcd; 
+        }
+        else
+        {
+          throw "Error";
+          mcd = m_d();
+          numerador = numerador/mcd;
+          denominador = denominador/mcd; 
+        }
+      }
+  
+        
+        
+      
+
   } 
   catch(const char* a)
   {

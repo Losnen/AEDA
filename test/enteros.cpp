@@ -93,23 +93,11 @@ entero negar(const entero& a)
 
 entero operator/(const entero& a, const entero& b)
 {
-    int r = 0;
+    return a.get_numero() / b.get_numero();   
+    
     try {
-    if(!b.get_numero())
-    {
-        cout << "HA introducido un numero con denominador 0, ¿Desea que el denominador sea 1? (si/no) = (1/0): " << endl;
-        cin >> r;
-        if(r == 1)
-        {
-            return entero(a.get_numero()/1);
-        }
-        else
-        {
-           throw 1; 
-        }
-        
-    }
-
+    if(!b.get_numero()) throw 1;
+    
     return entero(a.get_numero()/b.get_numero());
     } 
   catch(int a)

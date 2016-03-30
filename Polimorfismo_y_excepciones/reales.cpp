@@ -105,7 +105,7 @@ real operator/(const real& a, const real& b)
     } 
   catch(int a)
   {
-    cout << "***ERROR*** [División por cero]\nEl resultado se igualará a 0 pero correctamente tiende a infinito." << endl;
+    cout << "Error, División por cero" << endl;
     return 000;
   }
 }
