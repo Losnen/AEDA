@@ -1,9 +1,9 @@
 #Práctica 4: Implementación de Tabla Hash
 
 ##Objetivo
-Desarrollar en lenguaje C++ una clase genérica que implemente la técnica de búsqueda basada en tabla de hashing con dispersión cerrada.
+1. Desarrollar en lenguaje C++ una clase genérica que implemente la técnica de búsqueda basada en tabla de hashing con dispersión cerrada.
 
-Realizar un análisis del rendimiento de la tabla de hashing con distintas funciones de dispersión, distintas estrategias de exploración y distintos factores de carga. En este análisis se incluye el estudio del comportamiento para las funciones de dispersión: módulo y pseudoaleatoria; y para las estrategias de exploración: lineal, cuadrática, dispersión doble y redispersión.
+2. Realizar un análisis del rendimiento de la tabla de hashing con distintas funciones de dispersión, distintas estrategias de exploración y distintos factores de carga. En este análisis se incluye el estudio del comportamiento para las funciones de dispersión: módulo y pseudoaleatoria; y para las estrategias de exploración: lineal, cuadrática, dispersión doble y redispersión.
 
 ##nunciado
 + Desarrollar en lenguaje C++ la plantilla de clases TablaHash < clave > que implemente las siguientes operaciones:
@@ -33,8 +33,8 @@ bloque es un parámetro de los constructores de la tabla y la celda.
 
 2. Solicita los parámetros del experimento:
 
-*Factor de carga, factor. Valor entre 0 y 1 que se corresponde al cociente entre el número de valores de clave almacenados y el número de valores que es posible almacenar en la tabla.
-*Número de pruebas, nPruebas. Número de repeticiones de la operación, inserción o búsqueda, que se realiza en el experimento.
+* Factor de carga, factor. Valor entre 0 y 1 que se corresponde al cociente entre el número de valores de clave almacenados y el número de valores que es posible almacenar en la tabla.
+* Número de pruebas, nPruebas. Número de repeticiones de la operación, inserción o búsqueda, que se realiza en el experimento.
 
 3. Crear un banco de prueba con 2xN valores de tipo DNI generados de forma aleatoria. El banco de pruebas se almacena en un vector, con N=factorxnCeldasxnBloques.
 
