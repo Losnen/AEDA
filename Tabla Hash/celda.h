@@ -8,19 +8,19 @@ class Celda
 {
     private:
         
-        T*      bloque;
-        int     sz;
+        T*      bloque;             //Vector 
+        int     sz;                 //Tamaño del vector
         
     public:
         
-        Celda(void);
-        Celda(int tam);
-        ~Celda(void);
+        Celda(void);                //Constructor por defecto
+        Celda(int tam);             //Constructor
+        ~Celda(void);               //Destructor
         
-        bool Buscar(T X);
-        bool Insertar(T X);
+        bool Buscar(T X);           //Funcionn de búsqueda en la celda
+        bool Insertar(T X);         //Función de incersión en la celda
         
-        T get_dato(int pos);
+        T get_dato(int pos);        //Retorna el valor almacenado en bloque[pos]
 
 };
 

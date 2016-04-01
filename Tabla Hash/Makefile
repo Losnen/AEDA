@@ -1,7 +1,7 @@
 CXX=g++ 
 CXXFLAGS=-g
 
-OBJS = main.o
+OBJS = dni.o main.o
 
 all: ${OBJS}
 	$(CXX) $(CXXFLAGS) -o hash ${OBJS}

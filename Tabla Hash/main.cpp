@@ -1,17 +1,10 @@
 #include <iostream>
 #include "celda.h"
+#include "dni.h"
+
+using namespace std;
 
 int main (void)
 {
-    Celda<int> a(10);
-    
-    for (int i = 0; i < 10; i++) 
-    {
-        a.Insertar(i+1);
-    }
-    
-    for (int i = 0; i < 10; i++) 
-    {
-        cout << a.get_dato(i) << " ";
-    }
+    DNI A(51165611);
 }
