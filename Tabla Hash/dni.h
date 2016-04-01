@@ -20,4 +20,5 @@ class DNI
         
         DNI& operator=(const DNI&);     //Iguala el DNI a un objeto DNI
         DNI& operator=(const int&);     //Iguala el DNI a un número entero
+        friend ostream& operator<<(ostream& os, const DNI& a);
 };

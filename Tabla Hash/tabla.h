@@ -111,19 +111,19 @@ int exploracion_generica(T x, int intento)
 template <class T>
 int exploracion_lineal(Clave x, int intento)
 {
-    
+    return((dispersion(x) + intento) % tam);
 }
 
 template <class T>
 int exploracion_cuadratica(Clave x, int intento)
 {
-    
+    return((dispersion(x) + (intento*intento)) % tam);	
 }
 
 template <class T>
 int exploracion_doble(Clave x, int intento)
 {
-    
+    return((dispersion(x) + (intento * dispersion_aleatoria(x))) % tam); 
 }
 
 template <class T>
