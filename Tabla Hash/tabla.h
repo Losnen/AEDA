@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include "celda.h"
-#include <iomainp>
+#include <iomanip>
 #include <cstdlib>
+
+#include "celda.h"
 
 using namespace std;
 
@@ -28,15 +29,15 @@ class TablaHash
         int dispersion_aleatoria(T x);	                                    //Función de dispersión aleatoria      
         
         int exploracion_generica(T x,int intento);                          //Función de exploración genérica
-        int exploracion_lineal(Clave x, int intento);		                //Función de exploración lineal
-        int exploracion_cuadratica(Clave x, int intento);		            //Función de exploración cuadrática
-        int exploracion_doble(Clave x, int intento);		                //Función de exploración dispersión doble
-        int exploracion_redispersion(Clave x, int intento);	                //Función de exploración re-dispersión
+        int exploracion_lineal(T x, int intento);		                    //Función de exploración lineal
+        int exploracion_cuadratica(T x, int intento);		                //Función de exploración cuadrática
+        int exploracion_doble(T x, int intento);		                    //Función de exploración dispersión doble
+        int exploracion_redispersion(T x, int intento);	                    //Función de exploración re-dispersión
 
 };
 
 template <class T>
-TablaHash(int tamc, int tamb, int ex, int disp):
+TablaHash<T>::TablaHash(int tamc, int tamb, int ex, int disp):
 tam(tamc),
 exploracion(ex),
 dispersion(disp)
@@ -44,16 +45,16 @@ dispersion(disp)
     celdas.resize(tam);
     for(int i =0;i<tam;i++)
     {
-        celdas[i](tamb);
+        celdas[i].resize(tamb);
     }
 }
 
 template <class T>
-~TablaHash(void)
+TablaHash<T>::~TablaHash(void)
 {}
 
 template <class T>
-int dispersion_generica(T x)
+int TablaHash<T>::dispersion_generica(T x)
 {
     switch(dispersion)
     {
@@ -65,27 +66,27 @@ int dispersion_generica(T x)
         break;
         default:
             cout << "Dispersión inválida" << endl;
-            exit(1);
+            exit(0);
         break;
     }
 }
 
 template <class T>
-int dispersion_modulo(T x)
+int TablaHash<T>::dispersion_modulo(T x)
 {
     int r = (x % tam);
     return r;
 }
 
 template <class T>
-int dispersion_aleatoria(T x)
+int TablaHash<T>::dispersion_aleatoria(T x)
 {
     srand(x);
     return (rand() % tam);
 }
 
 template <class T>
-int exploracion_generica(T x, int intento)
+int TablaHash<T>::exploracion_generica(T x, int intento)
 {
     switch(exploracion)
     {
@@ -103,31 +104,48 @@ int exploracion_generica(T x, int intento)
         break;
         default:
             cout << "Exploración inválida" << endl;
-            exit(1);
+            exit(0);
         break;
     }
 }
 
 template <class T>
-int exploracion_lineal(Clave x, int intento)
+int TablaHash<T>::exploracion_lineal(T x, int intento)
 {
     return((dispersion(x) + intento) % tam);
 }
 
 template <class T>
-int exploracion_cuadratica(Clave x, int intento)
+int TablaHash<T>::exploracion_cuadratica(T x, int intento)
 {
     return((dispersion(x) + (intento*intento)) % tam);	
 }
 
 template <class T>
-int exploracion_doble(Clave x, int intento)
+int TablaHash<T>::exploracion_doble(T x, int intento)
 {
     return((dispersion(x) + (intento * dispersion_aleatoria(x))) % tam); 
 }
 
 template <class T>
-int exploracion_redispersion(Clave x, int intento)
+int TablaHash<T>::exploracion_redispersion(T x, int intento)
 {
     
+    int op;
+    switch(op)
+    {
+        case 0:
+            return((dispersion(x) + intento) % tam);
+        break;
+        case 1:
+            return((dispersion(x) + (intento * intento)) % tam);
+        break;
+        case 2:
+            return((dispersion(x)+intento*dispersion_aleatoria(x))%tam);
+        break;
+        default:
+            cout << "Error en la generación del numero aleatorio" << endl;
+            exit(0);
+        break;
+    }
 }

@@ -21,7 +21,7 @@ class Celda
         bool Insertar(T X);         //Función de incersión en la celda
         
         T get_dato(int pos);        //Retorna el valor almacenado en bloque[pos]
-
+        void resize(int tam);       //Reajusta el tamaño del vector
 };
 
 
@@ -88,4 +88,17 @@ template <class T>
 T Celda<T>::get_dato(int pos)
 {
     return bloque[pos];
+}
+
+template <class T>
+void Celda<T>::resize(int tam)
+{
+    sz = tam;
+    bloque = new T[sz];
+    
+    for(int i = 0; i < tam; i++)
+    { 
+        bloque[i] = 0;
+    }
+
 }

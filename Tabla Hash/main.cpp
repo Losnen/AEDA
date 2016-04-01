@@ -1,10 +1,10 @@
 #include <iostream>
-#include "celda.h"
+#include "tabla.h"
 #include "dni.h"
 
 using namespace std;
 
 int main (void)
 {
-    DNI A(51165611);
+    TablaHash<int> A(10,5,1,1);
 }
