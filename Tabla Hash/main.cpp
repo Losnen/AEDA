@@ -15,7 +15,7 @@ int main (void)
     double fCarga = 0.0;
     int minimo = 99999999; 
     int acumulado = 0;
-    int máximo = 0;
+    int maximo = 0;
     
     //Apartado 1    
     cout << "AEDA Práctica 4: Tablas Hash" << endl;
@@ -57,7 +57,7 @@ int main (void)
     {
         banco[i] = rand() % 30000000+50000000;
     }
-     
+    
     //Apartado 4  
     int intento = 0;
     int clave_cnt = 0;
