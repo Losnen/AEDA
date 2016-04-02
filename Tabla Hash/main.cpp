@@ -15,7 +15,7 @@ int main (void)
     double fCarga = 0.0;
     int minimo = 99999999; 
     int acumulado = 0;
-    int maximo = 0; 
+    int maximo = 0;
     
     //Apartado 1    
     cout << "AEDA Práctica 4: Tablas Hash" << endl;
