@@ -33,6 +33,9 @@ class TablaHash
         int exploracion_cuadratica(T x, int intento);		                //Función de exploración cuadrática
         int exploracion_doble(T x, int intento);		                    //Función de exploración dispersión doble
         int exploracion_redispersion(T x, int intento);	                    //Función de exploración re-dispersión
+        
+        Celda<T>& operator[](int i);                                        //Operador que accede a los elementos de la tabla
+        
 
 };
 
@@ -112,40 +115,46 @@ int TablaHash<T>::exploracion_generica(T x, int intento)
 template <class T>
 int TablaHash<T>::exploracion_lineal(T x, int intento)
 {
-    return((dispersion(x) + intento) % tam);
+    return((dispersion_generica(x) + intento) % tam);
 }
 
 template <class T>
 int TablaHash<T>::exploracion_cuadratica(T x, int intento)
 {
-    return((dispersion(x) + (intento*intento)) % tam);	
+    return((dispersion_generica(x) + (intento*intento)) % tam);	
 }
 
 template <class T>
 int TablaHash<T>::exploracion_doble(T x, int intento)
 {
-    return((dispersion(x) + (intento * dispersion_aleatoria(x))) % tam); 
+    return((dispersion_generica(x) + (intento * dispersion_aleatoria(x))) % tam); 
 }
 
 template <class T>
 int TablaHash<T>::exploracion_redispersion(T x, int intento)
 {
-    
-    int op;
+    srand(x);
+    int op = (rand() % 3);
     switch(op)
     {
         case 0:
-            return((dispersion(x) + intento) % tam);
+            return((dispersion_generica(x) + intento) % tam);
         break;
         case 1:
-            return((dispersion(x) + (intento * intento)) % tam);
+            return((dispersion_generica(x) + (intento * intento)) % tam);
         break;
         case 2:
-            return((dispersion(x)+intento*dispersion_aleatoria(x))%tam);
+            return((dispersion_generica(x) + intento * dispersion_aleatoria(x)) % tam);
         break;
         default:
             cout << "Error en la generación del numero aleatorio" << endl;
             exit(0);
         break;
     }
+}
+
+template <class T>
+Celda<T>& TablaHash<T>::operator[](int i)
+{
+    return celdas[i];
 }

@@ -36,3 +36,51 @@ ostream& operator<<(ostream& os, const DNI& a)
   os << a.get_dni();
   return os;
 }
+bool operator==(const DNI& a, const DNI& b)
+{
+  return (a.get_dni()==b.get_dni()?true:false);
+}
+
+bool operator==(const DNI& a, const int& b)
+{
+  return (a.get_dni()==b?true:false);
+}
+bool operator!=(const DNI& a, const DNI& b)
+{
+  return (a==b?false:true);
+}
+
+bool operator!=(const DNI& a, const int& b)
+{
+  return (a.get_dni()==b?false:true);
+}
+
+bool operator>(const DNI& a, const int& b)
+{
+  return (a.get_dni()>b?true:false);
+}
+
+int operator+(const DNI& a, const DNI& b)
+{
+  return(a.get_dni()+b.get_dni());
+}
+  
+int operator/(const DNI& a, const DNI& b)
+{
+  return(a.get_dni()/b.get_dni());
+}
+
+int operator/(const DNI& a, const int& b)
+{
+  return(a.get_dni()/b);
+}
+  
+int operator%(const DNI& a, const DNI& b)
+{
+  return(a.get_dni()%b.get_dni());
+}
+
+int operator%(const DNI& a, const int& b)
+{
+  return(a.get_dni()%b);
+}
