@@ -57,7 +57,7 @@ int main (void)
     {
         banco[i] = rand() % 30000000+50000000;
     }
-    
+     
     //Apartado 4  
     int intento = 0;
     int clave_cnt = 0;
