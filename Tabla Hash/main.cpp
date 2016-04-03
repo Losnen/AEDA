@@ -33,7 +33,7 @@ int main (void)
 
     cout << "Elige una función de exploracion: " << endl;
     cout << "0.Lineal" << endl;
-    cout << "1.Cuadrática[" << endl;
+    cout << "1.Cuadrática" << endl;
     cout << "2.Dispersión doble" << endl;
     cout << "3.Re-dispersión" << endl;
     cout << "Opción: "; 
@@ -75,11 +75,78 @@ int main (void)
         cout << "Clave_cnt: " << clave_cnt << endl;
         
     //Apartado 5
+    vector<double> M(nPruebas);
+    intento = 0;
     for (int i = 0; i < nPruebas; i++) 
     {
-        while(!H[H.exploracion_generica(banco[i],intento)].Insertar(banco[i]))	            //Mientras no pueda insertar en la tabla
+        int a = (rand() % ((N/2) + 1) + (N/2));
+        while(!H[H.exploracion_generica(banco[a],intento)].Buscar(banco[a]))	            
         {
-                intento++;                                                                      //Aumentamos el intento
-    	}
+                intento++;
+                if(!H[H.exploracion_generica(banco[a], intento)].full()) 
+                    break;
+        }
+        
+        if((intento + 1) < minimo) 
+        minimo = (intento + 1);
+        
+        if((intento + 1) > maximo) 
+            maximo = (intento + 1);
+        
+        M[i] = (intento + 1);
+        intento = 0;
     }
+    
+    double med = 0.0;
+    for(int i = 0; i < nPruebas; i++)
+    {
+        med+= M[i]; 
+    }
+
+  
+    acumulado = (med / nPruebas);
+    
+    cout << endl;
+    cout << "Celdas"; 
+    cout << setw(12) << "Bloques";
+    cout << setw(25) << "Exploración";
+    cout << setw(12) << "Carga"; 
+    cout << setw(12) << "Pruebas" << endl;
+  
+    cout << nCeldas; 
+    cout << setw(12) << nBloques;
+  
+    switch(gx)
+    {
+        case 0:
+            cout << setw(25) << "Lineal";
+        break;
+        case 1:
+            cout  << setw(25) << "Cuadrática";
+        break;
+          
+        case 2:
+            cout << setw(25) << "Dispersión Dobe";
+        break;
+        case 3:
+            cout << setw(25) << "Re-dispersión";
+        break;
+    }
+      
+      cout << setw(12) << factor; 
+      cout << setw(12) << nPruebas << endl;
+      
+      cout << endl << endl;
+      cout << setw(40) << "Número de comparaciones" << endl;
+      cout << " " <<  setw(24) << "Mínimo"; 
+      cout << setw(15) << "Medio"; 
+      cout << " " << setw(15) << "Máximo" << endl;
+      cout << "Búsquedas" << setw(15) << minimo; 
+      cout << setw(15) << acumulado; 
+      cout << setw(15) << maximo << endl;
+      cout << "Inserción" << setw(15) << minimo; 
+      cout << setw(15) << acumulado; 
+      cout << setw(15) << maximo << endl;
+      
+      cout << endl;
 }

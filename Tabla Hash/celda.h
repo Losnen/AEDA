@@ -22,6 +22,7 @@ class Celda
         
         T get_dato(int pos);        //Retorna el valor almacenado en bloque[pos]
         void resize(int tam);       //Reajusta el tamaño del vector
+        bool full(void);            //Devuelve true si la celda está llena 
 };
 
 
@@ -101,4 +102,17 @@ void Celda<T>::resize(int tam)
         bloque[i] = 0;
     }
 
+}
+
+template <class T>
+bool Celda<T>::full(void)
+{
+    for(int i = 0; i < sz; i++)
+    {
+        if(bloque[i] == 0)
+        {
+            return false;
+        }
+    }
+    return true;
 }
