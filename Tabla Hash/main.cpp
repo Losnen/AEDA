@@ -64,9 +64,9 @@ int main (void)
     
         for(int i = 0; i < (N/2); i++) 
         {
-            while(!H[H.exploracion_generica(banco[i],intento)].Insertar(banco[i]))	            //Mientras no pueda insertar en la tabla
+            while(!H[H.exploracion_generica(banco[i],intento)].Insertar(banco[i]))
             {
-                intento++;                                                                      //Aumentamos el intento
+                intento++;
     	    }
     	    clave_cnt++;
     	    intento = 0;	
