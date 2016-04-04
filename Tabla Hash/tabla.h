@@ -46,7 +46,7 @@ exploracion(ex),
 dispersion(disp)
 {
     celdas.resize(tam);
-    for(int i =0;i<tam;i++)
+    for(int i = 0; i < tam; i++)
     {
         celdas[i].resize(tamb);
     }

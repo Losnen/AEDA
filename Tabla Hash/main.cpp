@@ -161,7 +161,7 @@ int main (void)
     cout << endl << endl;
     cout << "Celdas"; 
     cout << setw(12) << "Bloques";
-    cout << setw(25) << "Exploración";
+    cout << setw(20) << "Exploración";
     cout << setw(12) << "Carga"; 
     cout << setw(12) << "Pruebas" << endl;
     
@@ -171,16 +171,16 @@ int main (void)
     switch(gx)
     {
         case 0:
-            cout << setw(25) << "Lineal";
+            cout << setw(22) << "Lineal";
         break;
         case 1:
-            cout << setw(25) << "Cuadrática";
+            cout << setw(22) << "Cuadrática";
         break;
         case 2:
-            cout << setw(25) << "Dispersión Dobe";
+            cout << setw(22) << "Dispersión Dobe";
         break;
         case 3:
-            cout << setw(25) << "Re-dispersión";
+            cout << setw(22) << "Re-dispersión";
         break;
     }
     
@@ -193,7 +193,8 @@ int main (void)
     cout << setw(15) << "Medio"; 
     cout << " " << setw(15) << "Máximo" << endl;
     cout << "Búsquedas" << setw(15) << minB; 
-    cout << setw(15) << acuB; cout << setw(15) << maxB << endl;
+    cout << setw(15) << acuB; 
+    cout << setw(15) << maxB << endl;
     cout << "Inserción" << setw(15) << minI; 
     cout << setw(15) << acuI; 
     cout << setw(15) << maxI << endl;
