@@ -13,7 +13,40 @@ int main (void)
     int nPruebas = -1;
     double factor = 0.0;
     double fCarga = 0.0;
-    
+/* switch(dispersion)
+    {
+        case 0:
+            return(dispersion_modulo(x));
+        break;
+        case 1:
+            return(dispersion_aleatoria(x));
+        break;
+        default:
+            cout << "Dispersión inválida" << endl;
+            exit(0);
+        break;
+        
+        
+            switch(exploracion)
+    {
+        case 0:
+            return(exploracion_lineal(x,intento));
+        break;
+        case 1:
+            return(exploracion_cuadratica(x,intento));
+        break;
+        case 2:
+            return(exploracion_doble(x,intento));
+        break;
+        case 3:
+            return(exploracion_redispersion(x,intento));
+        break;
+        default:
+            cout << "Exploración inválida" << endl;
+            exit(0);
+        break;
+    }
+    }*/    
     //Apartado 1    
     cout << "AEDA Práctica 4: Tablas Hash" << endl;
     cout << "Introduzca el número de celdas de la tabla: ";
@@ -124,6 +157,12 @@ int main (void)
     for(int i = 0; i < nPruebas; i++)
     {
         int z = rand()%((N/2)+1)+(N/2);
+        
+        // BANCO = 100
+        // N = 50
+        // 0 - 50
+        // Z = 51 - 100
+        
     
         while(!H[H.exploracion_generica(banco[z], intento)].Buscar(banco[z]))
         {

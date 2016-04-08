@@ -6,7 +6,7 @@
 #include "e_doble.h"
 #include "e_lineal.h"
 #include "e_redisp.h"
-
+#include "tabla.h"
 
 using namespace std;
 
@@ -27,5 +27,8 @@ int main(void)
     cout << c->g(a->h(5),10) << endl; 
     cout << e->g(a->h(5),10) << endl; 
     cout << f->g(a->h(5),10) << endl;
+    
+    TablaHash<int> H(1, 1, b, d);
+
 
 }
