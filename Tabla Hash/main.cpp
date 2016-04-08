@@ -13,7 +13,9 @@ int main (void)
     int nPruebas = -1;
     double factor = 0.0;
     double fCarga = 0.0;
-/* switch(dispersion)
+    Dispersion<DNI>* hxp;
+    Exploracion<DNI>* gxp;
+/* switch(hx)
     {
         case 0:
             return(dispersion_modulo(x));
@@ -25,9 +27,9 @@ int main (void)
             cout << "Dispersión inválida" << endl;
             exit(0);
         break;
+    } 
         
-        
-            switch(exploracion)
+            switch(gx)
     {
         case 0:
             return(exploracion_lineal(x,intento));
@@ -69,7 +71,41 @@ int main (void)
     cout << "Opción: "; 
     cin >> gx;
     
-    TablaHash<DNI> H(nCeldas, nBloques, gx, hx);
+    switch(hx)
+    {
+        case 0:
+            hxp = new Modulo<DNI>(nCeldas);
+        break;
+        case 1:
+            hxp = new Pseudo<DNI>(nCeldas);
+        break;
+        default:
+            cout << "Dispersión inválida" << endl;
+            exit(0);
+        break;
+    } 
+        
+    switch(gx)
+    {
+        case 0:
+            gxp = new Lineal<DNI>(nCeldas,hxp); 
+        break;
+        case 1:
+            gxp = new Cuadratica<DNI>(nCeldas,hxp); 
+        break;
+        case 2:
+            gxp = new Doble<DNI>(nCeldas,hxp); 
+        break;
+        case 3:
+            gxp = new Redisp<DNI>(nCeldas,hxp); 
+        break;
+        default:
+            cout << "Exploración inválida" << endl;
+            exit(0);
+        break;
+    }
+    
+    TablaHash<DNI> H(nCeldas, nBloques, gxp, hxp);
     
     //Apartado 2
     cout << "Introduzca el factor de carga (Decimal entre  0 y 1): "; 
