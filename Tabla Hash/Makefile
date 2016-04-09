@@ -7,4 +7,4 @@ all: ${OBJS}
 	$(CXX) $(CXXFLAGS) -o hash ${OBJS}
 
 clean: 
-	rm -rf *.o hash
+	rm -rf *.o hash salida.txt

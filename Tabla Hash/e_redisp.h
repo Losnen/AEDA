@@ -32,13 +32,13 @@ int Redisp<T>::g(T X, int intento)
     int op = (rand() % 3);
     switch(op)
     {
-        case 0:
+        case 1:
             return((aux + intento) % tam);
         break;
-        case 1:
+        case 2:
             return(aux + (intento * intento) % tam);
         break;
-        case 2:
+        case 3:
             return((aux + intento * aux) % tam);
         break;
         default:

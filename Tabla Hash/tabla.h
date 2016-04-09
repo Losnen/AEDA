@@ -3,6 +3,7 @@
 #include <vector>
 #include <iomanip>
 #include <cstdlib>
+#include <fstream>
 
 #include "d_modulo.h"
 #include "d_pseudo.h"
@@ -23,18 +24,22 @@ class TablaHash
         int                     tam;                                            //Tamaño de la tabla
         Dispersion<T>*          dispersion;                                     //Tipo de dispersión
         Exploracion<T>*         exploracion;                                    //Tipo de exploración
-        
+        int                     intento;
         
     public:
     
         TablaHash(int tamc, int tamb, Exploracion<T>* ex, Dispersion<T>* disp);  //Constructor    
         ~TablaHash(void);
         
+        int get_intento(void);
         int dispersion_generica(T x);                                           //Función de dispersión genérica
         int exploracion_generica(T x,int intento);                              //Función de exploración genérica
         
-        Celda<T>& operator[](int i);                                            //Operador que accede a los elementos de la tabla
+        bool Buscar(T X);
+        bool Insertar(T X);
         
+        Celda<T>& operator[](int i);                                            //Operador que accede a los elementos de la tabla
+        void exportar (void);
 
 };
 
@@ -71,4 +76,78 @@ template <class T>
 Celda<T>& TablaHash<T>::operator[](int i)
 {
     return celdas[i];
+}
+
+template <class T>
+int TablaHash<T>::get_intento(void)
+{
+    return intento;
+}
+
+template <class T>
+bool TablaHash<T>::Buscar(T X)
+{
+    intento = 1;
+    int encontrado = 0;
+    int pos = dispersion->h(X);
+    if (!celdas[pos].Buscar(X))
+    {
+        while (!encontrado && intento <= tam)
+        {
+            int pos1 = (pos + exploracion->g(X,intento)) % tam;
+            encontrado = celdas[pos1].Buscar(X);
+                if (encontrado == -2)
+                    return false;
+            intento++;
+        }
+        
+    }
+    
+    else
+        encontrado = true;
+        
+    return encontrado;
+    
+    
+    
+}
+
+template <class T>
+bool TablaHash<T>::Insertar(T X)
+{
+    intento = 1;
+    bool insertado = false;
+    int pos = dispersion->h(X);
+    
+    
+    if (!celdas[pos].Insertar(X))
+    {
+        while (!insertado && intento <= tam)
+        {
+            int pos1 = (pos + exploracion->g(X,intento)) % tam;
+            insertado = celdas[pos1].Insertar(X);
+            intento++;
+        }
+    }
+    
+    else
+        insertado = false;
+        
+    return insertado;
+}
+
+template <class T>
+void TablaHash<T>::exportar(void) 
+{
+    ofstream salida("salida.txt"); 
+    for(int i = 0; i < celdas[i].get_sz(); i++) 
+    {
+        for(int j = 0; j < tam; j++)
+	    {
+            salida << setw(10) << celdas[j].get_dato(i) << " | ";
+	    }
+	    salida << endl << endl;
+	}
+	
+   
 }

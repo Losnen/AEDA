@@ -15,40 +15,7 @@ int main (void)
     double fCarga = 0.0;
     Dispersion<DNI>* hxp;
     Exploracion<DNI>* gxp;
-/* switch(hx)
-    {
-        case 0:
-            return(dispersion_modulo(x));
-        break;
-        case 1:
-            return(dispersion_aleatoria(x));
-        break;
-        default:
-            cout << "Dispersión inválida" << endl;
-            exit(0);
-        break;
-    } 
-        
-            switch(gx)
-    {
-        case 0:
-            return(exploracion_lineal(x,intento));
-        break;
-        case 1:
-            return(exploracion_cuadratica(x,intento));
-        break;
-        case 2:
-            return(exploracion_doble(x,intento));
-        break;
-        case 3:
-            return(exploracion_redispersion(x,intento));
-        break;
-        default:
-            cout << "Exploración inválida" << endl;
-            exit(0);
-        break;
-    }
-    }*/    
+    
     //Apartado 1    
     cout << "AEDA Práctica 4: Tablas Hash" << endl;
     cout << "Introduzca el número de celdas de la tabla: ";
@@ -130,16 +97,10 @@ int main (void)
     
         for(int i = 0; i < (N/2); i++) 
         {
-            while(!H[H.exploracion_generica(banco[i],intento)].Insertar(banco[i]))
-            {
-                intento++;
-    	    }
-    	    clave_cnt++;
-    	    intento = 0;	
-        }
+            H.Insertar(banco[i]);
+  	    }
         
-        cout << "Clave_cnt: " << clave_cnt << endl;
-        
+
     //Apartado 5
     int maxB = 0; 
     int minB = 999999999;
@@ -153,22 +114,20 @@ int main (void)
     {
         int x = rand()%(N/2);
     
-        while(!H[H.exploracion_generica(banco[x], intento)].Buscar(banco[x]))
-        {
-            intento++;
-        }
+        H.Buscar(banco[x]);
+        intento = H.get_intento();
     
-        if((intento + 1) < minB) 
+        if((intento) < minB) 
         {
-            minB = (intento + 1);
+            minB = (intento);
         }
         
-        if((intento + 1) > maxB) 
+        if((intento) > maxB) 
         {
-            maxB = (intento + 1);
+            maxB = (intento);
         }
     
-        B[i] = (intento + 1);
+        B[i] = (intento);
     
         intento = 0;
     }
@@ -193,33 +152,21 @@ int main (void)
     for(int i = 0; i < nPruebas; i++)
     {
         int z = rand()%((N/2)+1)+(N/2);
-        
-        // BANCO = 100
-        // N = 50
-        // 0 - 50
-        // Z = 51 - 100
-        
     
-        while(!H[H.exploracion_generica(banco[z], intento)].Buscar(banco[z]))
-        {
-            intento++;
-            if(!H[H.exploracion_generica(banco[z], intento)].full()) 
-            {
-                break;
-            }
-        }
+        H.Insertar(banco[z]);
+        intento = H.get_intento();
     
-        if((intento + 1) < minI)
+        if((intento) < minI)
         {
-            minI = (intento + 1);
+            minI = (intento);
         }
         
-        if((intento + 1) > maxI) 
+        if((intento) > maxI) 
         {
-            maxI = (intento + 1);
+            maxI = (intento);
         }
         
-        C[i] = (intento + 1);
+        C[i] = (intento);
     
         intento = 0;
     }
@@ -274,4 +221,5 @@ int main (void)
     cout << setw(15) << acuI; 
     cout << setw(15) << maxI << endl;
     cout << endl;
+    H.exportar();
 }
