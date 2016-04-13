@@ -27,6 +27,7 @@ int main (void)
     cout << "Elige una función de dispersión: " << endl;
     cout << "0. Módulo" << endl;
     cout << "1. Pseudo-aleatoria" << endl;
+    cout << "2. mod" << endl;
     cout << "Opción: "; 
     cin >> hx;
     
@@ -35,6 +36,7 @@ int main (void)
     cout << "1.Cuadrática" << endl;
     cout << "2.Dispersión doble" << endl;
     cout << "3.Re-dispersión" << endl;
+    cout << "4. mod" << endl;
     cout << "Opción: "; 
     cin >> gx;
     
@@ -45,6 +47,9 @@ int main (void)
         break;
         case 1:
             hxp = new Pseudo<DNI>(nCeldas);
+        break;
+        case 2:
+            hxp = new Dmodificacion<DNI>();
         break;
         default:
             cout << "Dispersión inválida" << endl;
@@ -65,6 +70,9 @@ int main (void)
         break;
         case 3:
             gxp = new Redisp<DNI>(nCeldas,hxp); 
+        break;
+        case 4:
+            gxp = new Emodificacion<DNI>(nCeldas,hxp);
         break;
         default:
             cout << "Exploración inválida" << endl;
@@ -100,6 +108,7 @@ int main (void)
             H.Insertar(banco[i]);
   	    }
         
+    H.exportar();
 
     //Apartado 5
     int maxB = 0; 
@@ -153,7 +162,7 @@ int main (void)
     {
         int z = rand()%((N/2)+1)+(N/2);
     
-        H.Insertar(banco[z]);
+        H.Buscar(banco[z]);
         intento = H.get_intento();
     
         if((intento) < minI)
@@ -221,5 +230,4 @@ int main (void)
     cout << setw(15) << acuI; 
     cout << setw(15) << maxI << endl;
     cout << endl;
-    H.exportar();
 }

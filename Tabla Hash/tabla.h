@@ -7,8 +7,10 @@
 
 #include "d_modulo.h"
 #include "d_pseudo.h"
+#include "d_modif.h"
 #include "e_cuadratica.h"
 #include "e_doble.h"
+#include "e_modif.h"
 #include "e_lineal.h"
 #include "e_redisp.h"
 #include "celda.h"
@@ -90,11 +92,12 @@ bool TablaHash<T>::Buscar(T X)
     intento = 1;
     int encontrado = 0;
     int pos = dispersion->h(X);
+
     if (!celdas[pos].Buscar(X))
     {
         while (!encontrado && intento <= tam)
         {
-            int pos1 = (pos + exploracion->g(X,intento)) % tam;
+            int pos1 = exploracion->g(X,intento);
             encontrado = celdas[pos1].Buscar(X);
                 if (encontrado == -2)
                     return false;
@@ -124,7 +127,7 @@ bool TablaHash<T>::Insertar(T X)
     {
         while (!insertado && intento <= tam)
         {
-            int pos1 = (pos + exploracion->g(X,intento)) % tam;
+            int pos1 = exploracion->g(X,intento);
             insertado = celdas[pos1].Insertar(X);
             intento++;
         }
@@ -140,11 +143,11 @@ template <class T>
 void TablaHash<T>::exportar(void) 
 {
     ofstream salida("salida.txt"); 
-    for(int i = 0; i < celdas[i].get_sz(); i++) 
+    for(int i = 0; i < tam; i++) 
     {
-        for(int j = 0; j < tam; j++)
+        for(int j = 0; j < celdas[i].get_sz();  j++)
 	    {
-            salida << setw(10) << celdas[j].get_dato(i) << " | ";
+            salida << setw(10) << celdas[i].get_dato(j) << " | ";
 	    }
 	    salida << endl << endl;
 	}
