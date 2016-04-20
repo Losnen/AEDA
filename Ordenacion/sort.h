@@ -9,8 +9,7 @@ using namespace std;
 template <class T>
 void Insercion(vector<T> sec, bool demos)
 {
-    int aux = 1;
-    for(int i = 1; i <= sec.size(); i++)
+    for(int i = 0; i < sec.size(); i++)
     {
         int j = i;
         T x = sec[i];
@@ -23,16 +22,14 @@ void Insercion(vector<T> sec, bool demos)
         }
         if(demos)
         {
-            cout << "Iteracion: " << aux << endl;
-            cout << "Elementos comparados: " << sec[j] << " " << x << endl;
-            aux++;
+            cout << "Comparando: " << sec[j] << " " << x << endl;
         }
     
         sec[j] = x;
     
         if(demos)
         {
-            cout << "Secuencia tras comparación: ";
+            cout << "Comparación: ";
             for(int k = 0; k < sec.size(); k++) 
                 cout << sec[k] << " ";
                 
@@ -55,9 +52,28 @@ void ShellSort(vector<T> sec, bool demos)
 }
 
 template <class T>
-void QuickSort(vector<T> sec, bool demos)
+void QuickSort(vector<T> sec, bool demos, int ini, int fin)
 {
+    int i = ini;
+    int f = fin;
+    int p = sec[(i + f) / 2];
+    int x  = 0;
+    while (i < f)
+    { 
+        while (sec[i] < p) i++;
+        while (sec[f] > p) f--;
+        if (i < f)
+        { 
+            x = sec[i];
+            sec[i] = sec[f];
+            sec[f] = x;
+            i++; 
+            f--;
+        } 
+    }
     
+    if (ini < f) QuickSort(sec, true, ini, f);
+    if (i < fin) QuickSort(sec, true, i, fin);
 }
 
 template <class T>
@@ -83,7 +99,7 @@ void Demostraciones(void)
     cin >> n;
     
     vector<T> Demostracion(n,0);
-    for(int i = 0; i< 25; i++)
+    for(int i = 0; i < n ; i++)
     {
         Demostracion[i] = rand() % 30000000+50000000;
     }
@@ -108,7 +124,7 @@ void Demostraciones(void)
             ShellSort(Demostracion,true);
         break;
         case 3:
-            QuickSort(Demostracion,true);
+            QuickSort(Demostracion,true,0,0);
         break;
         case 4:
             MergeSort(Demostracion,true);
