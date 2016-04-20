@@ -7,4 +7,4 @@ all: ${OBJS}
 	$(CXX) $(CXXFLAGS) -o ordenacion ${OBJS}
 
 clean: 
-	rm -rf *.o busqueda
+	rm -rf *.o ordenacion

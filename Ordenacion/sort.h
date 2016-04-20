@@ -9,7 +9,7 @@ using namespace std;
 template <class T>
 void Insercion(vector<T> sec, bool demos)
 {
-    for(int i = 0; i < sec.size(); i++)
+    for(int i = 1; i < sec.size(); i++)
     {
         int j = i;
         T x = sec[i];
@@ -29,7 +29,7 @@ void Insercion(vector<T> sec, bool demos)
     
         if(demos)
         {
-            cout << "Comparación: ";
+            cout << "Secuencia: ";
             for(int k = 0; k < sec.size(); k++) 
                 cout << sec[k] << " ";
                 
@@ -42,7 +42,31 @@ void Insercion(vector<T> sec, bool demos)
 template <class T>
 void BubbleSort(vector<T> sec, bool demos)
 {
-    
+    int x = 0;
+    for (int i = 1; i < sec.size(); i++)
+    { 
+        for (int j = sec.size()-1; j >= i; j--)
+        {
+            if (sec[j] < sec[j-1])
+            {
+                if(demos)
+                {
+                    cout << "Comparando: " << sec[j] << " " << sec[j-1] << endl;
+                }
+                x = sec[j-1];
+                sec[j-1] = sec[j];
+                sec[j] = x;
+                if(demos)
+                {
+                    cout << "Secuencia: ";
+                    for(int k = 0; k < sec.size(); k++) 
+                        cout << sec[k] << " ";
+                        
+                    cout << endl;
+                }
+            }
+        }
+    }
 }
 
 template <class T>
@@ -54,26 +78,7 @@ void ShellSort(vector<T> sec, bool demos)
 template <class T>
 void QuickSort(vector<T> sec, bool demos, int ini, int fin)
 {
-    int i = ini;
-    int f = fin;
-    int p = sec[(i + f) / 2];
-    int x  = 0;
-    while (i < f)
-    { 
-        while (sec[i] < p) i++;
-        while (sec[f] > p) f--;
-        if (i < f)
-        { 
-            x = sec[i];
-            sec[i] = sec[f];
-            sec[f] = x;
-            i++; 
-            f--;
-        } 
-    }
-    
-    if (ini < f) QuickSort(sec, true, ini, f);
-    if (i < fin) QuickSort(sec, true, i, fin);
+
 }
 
 template <class T>
