@@ -69,28 +69,69 @@ void BubbleSort(vector<T> sec, bool demos)
     }
 }
 
+
 template <class T>
-void ShellSort(vector<T> sec, bool demos)
+void deltasort(int d, vector<T> sec, int n, bool dem)
+{ 
+    T x = 0;
+    int j = 0;
+
+    for(int i = d; i < n; i++)
+    {
+        x = sec[i];
+        j = i;
+        while((j > (d - 1)) && ( x < sec[j-d]))
+        {
+            sec[j] = sec[j-d];
+            j = (j-d);
+        }
+        if(dem && (sec[j] != x))
+        {
+            cout << "Comparando: " << sec[j] << " " << x << endl;
+        }
+
+        if(sec[j] != x)
+        {
+            sec[j] = x;
+            if(dem)
+            {
+	            cout << "Secuencia: ";
+	            for(int k=0; k < sec.size(); k++) 
+	                cout << sec[k] << " "; 
+	                
+	           cout << endl;
+            }
+        }
+    }
+}
+
+template <class T>
+void ShellSort(vector<T> sec, bool demos, int alpha)
 {
-    
+    int del = sec.size();
+    while (del > alpha)
+    { 
+        del = del / 2 ;
+        deltasort(del,sec,sec.size(),demos);
+    }
 }
 
 template <class T>
 void QuickSort(vector<T> sec, bool demos, int ini, int fin)
-{
+{/*
     int i = ini;
     int f = fin;
     int p = sec[(i + f) / 2];
     int x  = 0;
     while (i < f)
     { 
-        while (sec[i] < p) i++;
+        while (i (sec[i] <= p)) i++;
         while (sec[f] > p) f--;
         if (i < f)
         { 
             if(demos)
             {
-                cout << "Comparando: " << sec[j] << " " << sec[j-1] << endl;
+                cout << "Comparando: " << sec[f] << " " << sec[ini] << endl;
             }
             x = sec[i];
             sec[i] = sec[f];
@@ -109,7 +150,7 @@ void QuickSort(vector<T> sec, bool demos, int ini, int fin)
     }
     
     if (ini < f) QuickSort(sec, true, ini, f);
-    if (i < fin) QuickSort(sec, true, i, fin);
+    if (i < fin) QuickSort(sec, true, i, fin);*/
 }
 
 template <class T>
@@ -157,10 +198,10 @@ void Demostraciones(void)
             BubbleSort(Demostracion,true);
         break;
         case 2:
-            ShellSort(Demostracion,true);
+            ShellSort(Demostracion,true,0.5);
         break;
         case 3:
-            QuickSort(Demostracion,true,0,0);
+            QuickSort(Demostracion,true,0,Demostracion.size());
         break;
         case 4:
             MergeSort(Demostracion,true);
