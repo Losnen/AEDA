@@ -6,8 +6,10 @@
 
 using namespace std;
 
+//Inserción
+
 template <class T>
-void Insercion(vector<T> sec, bool demos)
+void Insercion(vector<T>& sec, bool demos)
 {
     for(int i = 1; i < sec.size(); i++)
     {
@@ -39,8 +41,10 @@ void Insercion(vector<T> sec, bool demos)
     sec[-1] = 0;
 }
 
+//BubbleSort
+
 template <class T>
-void BubbleSort(vector<T> sec, bool demos)
+void BubbleSort(vector<T>& sec, bool demos)
 {
     int x = 0;
     for (int i = 1; i < sec.size(); i++)
@@ -69,9 +73,10 @@ void BubbleSort(vector<T> sec, bool demos)
     }
 }
 
+//Funciones del SellSort
 
 template <class T>
-void deltasort(int d, vector<T> sec, int n, bool dem)
+void deltasort(int d, vector<T>& sec, int n, bool dem)
 { 
     T x = 0;
     int j = 0;
@@ -106,7 +111,7 @@ void deltasort(int d, vector<T> sec, int n, bool dem)
 }
 
 template <class T>
-void ShellSort(vector<T> sec, bool demos, int alpha)
+void ShellSort(vector<T>& sec, bool demos, int alpha)
 {
     int del = sec.size();
     while (del > alpha)
@@ -116,51 +121,144 @@ void ShellSort(vector<T> sec, bool demos, int alpha)
     }
 }
 
-template <class T>
-void QuickSort(vector<T> sec, bool demos, int ini, int fin)
-{/*
-    int i = ini;
-    int f = fin;
-    int p = sec[(i + f) / 2];
-    int x  = 0;
-    while (i < f)
-    { 
-        while (i (sec[i] <= p)) i++;
-        while (sec[f] > p) f--;
-        if (i < f)
-        { 
-            if(demos)
-            {
-                cout << "Comparando: " << sec[f] << " " << sec[ini] << endl;
-            }
-            x = sec[i];
-            sec[i] = sec[f];
-            sec[f] = x;
-            if(demos)
-            {
-                cout << "Secuencia: ";
-                for(int k = 0; k < sec.size(); k++) 
-                    cout << sec[k] << " ";
-                    
-                cout << endl;
-            }
-            i++; 
-            f--;
-        } 
-    }
-    
-    if (ini < f) QuickSort(sec, true, ini, f);
-    if (i < fin) QuickSort(sec, true, i, fin);*/
-}
+//QuickSort https://ronnyml.wordpress.com/2009/07/19/quicksort-en-c/
 
 template <class T>
-void MergeSort(vector<T> sec, bool demos)
+int Divide(vector<T>& sec, int ini, int fin, bool demos)
 {
+    int left;
+    int right;
+    int pivot;
+    int temp;
+ 
+    pivot = sec[ini];
+    left = ini;
+    right = fin;
+ 
+    while (left < right) 
+    {
+        while (sec[right] > pivot) 
+        {
+            right--;
+        }
+ 
+        while ((left < right) && (sec[left] <= pivot)) 
+        {
+            left++;
+        }
+ 
+        if (left < right) 
+        {
+            temp = sec[left];
+            sec[left] = sec[right];
+            sec[right] = temp;
+        }
+    }
+ 
+    temp = sec[right];
+    sec[right] = sec[ini];
+    sec[ini] = temp;
     
+    return right;
 }
 
 template <class T>
-void Estadisticas(vector<T> sec)
+void QuickSort(vector<T>& sec, bool demos, int ini, int fin)
+{
+    int pivot;
+ 
+    if (ini < fin) 
+    {
+        pivot = Divide(sec, ini, fin, demos);
+        QuickSort(sec, demos, ini, pivot - 1);
+        QuickSort(sec, demos, pivot + 1, fin);
+    }
+}
+
+//Funciones de MergeSort
+
+template <class T>
+void mezcla(vector<T>& sec,vector<T> U,vector<T> V, bool demos)
+{
+    int i = 0;
+    int j = 0;
+
+    if(demos)
+    {
+        cout << "Comparando: "<< endl;
+        cout << "U: ";
+        for(int m = 0; m < U.size(); m++) 
+            cout << U[m] << " "; 
+        cout << "V: ";
+        for(int m = 0; m < V.size(); m++) 
+            cout << V[m] << " "; 
+            
+        cout << endl;
+    }
+
+    for(int k = 0; k < sec.size(); k++)
+    {
+        if((i < U.size()) && (j < V.size()))
+        {
+            if(U[i] < V[j])
+            {
+	            sec[k] = U[i];
+	            i++;
+            }
+            else
+            {
+	            sec[k] = V[j];
+	            j++;
+
+            }
+        }
+        else
+        {
+            if(i >= U.size())
+            {
+        	    sec[k] = V[j];
+	            j++;
+            }
+            else
+            {
+	            if(j >= V.size())
+	            {
+	                sec[k] = U[i];
+	                i++;
+	            }
+            }
+        }
+    }
+
+    if(demos)
+    {
+        cout << "Secuencia: ";
+        for(int m = 0; m < sec.size(); m++) 
+            cout << sec[m] << " "; 
+        
+        cout << endl;
+    }
+
+}
+
+template <class T>
+void MergeSort(vector<T>& sec, bool demos)
+{
+    if(sec.size() > 1)
+    {
+        vector<T> U(sec.begin(),(sec.begin()+sec.size()/2));
+        vector<T> V((sec.begin()+sec.size()/2), sec.end());
+
+        MergeSort(U, demos);
+        MergeSort(V, demos);
+        mezcla(sec,U,V,demos);
+    }
+}
+
+//Funciónes de Estadística y Desmotración
+
+template <class T>
+void Estadisticas(void)
 {
     
 }
@@ -172,7 +270,7 @@ void Demostraciones(void)
     int op = -1;
     int n = 0;
     srand(time(NULL));
-    cout << "Introduzca el tamaño de la secuencia a ordenar: ";
+    cout << "Introduzca el tamaño de la secuencia a ordenar (Numero entre: 1 y 25): ";
     cin >> n;
     
     vector<T> Demostracion(n,0);
@@ -181,12 +279,13 @@ void Demostraciones(void)
         Demostracion[i] = rand() % 30000000+50000000;
     }
     
-    cout << "Introduzca qué algoritmo de ordenación desea ejecutar:" << endl;
+    cout << "Tipos de Algoritmos: " << endl;
     cout << "0.Inserción" << endl;
     cout << "1.BubbleSort" << endl;
     cout << "2.ShellSort" << endl;
     cout << "3.QuickSort" << endl;
     cout << "4.MergeSort" << endl;
+    cout << "Elija una opción (0-4): ";
     cin >> op;
     
     switch(op)
@@ -201,10 +300,16 @@ void Demostraciones(void)
             ShellSort(Demostracion,true,0.5);
         break;
         case 3:
-            QuickSort(Demostracion,true,0,Demostracion.size());
+            QuickSort(Demostracion,true,0,Demostracion.size()-1);
         break;
         case 4:
             MergeSort(Demostracion,true);
         break;
     }
+    
+    cout << "Secuencia ordenada: ";
+    for(int i = 0; i < Demostracion.size(); i++) 
+        cout << Demostracion[i] << " "; 
+        
+    cout << endl;
 }
