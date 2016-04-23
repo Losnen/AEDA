@@ -173,7 +173,7 @@ int Divide(vector<T>& sec, int ini, int fin, bool demos, int& cnt)
     if(demos)
     {
         cout << "Secuencia tras comparación: ";
-        for(unsigned j2=0;j2<sec.size();j2++) 
+        for(int j2=0;j2<sec.size();j2++) 
             cout << sec[j2] << " "; 
         
         cout << endl;
@@ -318,7 +318,7 @@ void Estadisticas(void)
         ShellSort(aux,false,0.5,no[2]);
         aux = Estadistica[i];
 
-        QuickSort(aux,false,0,Estadistica.size()-1,no[3]);
+        QuickSort(aux,false,0,Estadistica[i].size()-1,no[3]);
         aux = Estadistica[i];
         
         MergeSort(aux,false,no[4]);
