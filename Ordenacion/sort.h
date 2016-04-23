@@ -93,13 +93,12 @@ void deltasort(int d, vector<T>& sec, int n, bool demos, int& cnt)
             j = (j-d);
             cnt++;
         }
-        if(demos)
-        {
-            cout << "Comparando: " << sec[j] << " " << x << endl;
-        }
-
         if(sec[j] != x)
         {
+            if(demos)
+            {
+                cout << "Comparando: " << sec[j] << " " << x << endl;
+            }
             sec[j] = x;
             if(demos)
             {
@@ -114,12 +113,12 @@ void deltasort(int d, vector<T>& sec, int n, bool demos, int& cnt)
 }
 
 template <class T>
-void ShellSort(vector<T>& sec, bool demos, int alpha, int& cnt)
+void ShellSort(vector<T>& sec, bool demos, float alpha, int& cnt)
 {
-    int del = sec.size();
-    while (del > alpha)
+    int del = alpha * sec.size();
+    while (del >= 1)
     { 
-        del = del / 2 ;
+        del = del / 2;
         deltasort(del,sec,sec.size(),demos,cnt);
     }
 }
