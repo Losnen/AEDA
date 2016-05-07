@@ -1,50 +1,46 @@
-#include "dni.h"
+#include "dni.hpp"
 
 DNI::DNI(void):
-num(0)
+numero(0)
 {}
 
 DNI::DNI(int n):
-num(n)
+numero(n)
 {}
   
 DNI::~DNI(void)
 {}
   
-int DNI::set_dni(int n)
+void DNI::editar(int n)
 {
-  num = n;
+  numero = n;
 }
-
-int DNI::get_dni(void) const
+  
+int DNI::obtener(void) const
 {
-  return(num);
+  return(numero);
 }
 
 DNI& DNI::operator=(const DNI& a)
 {
-  num = a.get_dni();
+  numero = a.obtener();
 }
 
 DNI& DNI::operator=(const int& a)
 {
-  num = a;
+  numero = a;
 }
 
-ostream& operator<<(ostream& os, const DNI& a)
-{
-  os << a.get_dni();
-  return os;
-}
 bool operator==(const DNI& a, const DNI& b)
 {
-  return (a.get_dni()==b.get_dni()?true:false);
+  return (a.obtener()==b.obtener()?true:false);
 }
 
 bool operator==(const DNI& a, const int& b)
 {
-  return (a.get_dni()==b?true:false);
+  return (a.obtener()==b?true:false);
 }
+
 bool operator!=(const DNI& a, const DNI& b)
 {
   return (a==b?false:true);
@@ -52,35 +48,74 @@ bool operator!=(const DNI& a, const DNI& b)
 
 bool operator!=(const DNI& a, const int& b)
 {
-  return (a.get_dni()==b?false:true);
+  return (a.obtener()==b?false:true);
 }
 
 bool operator>(const DNI& a, const int& b)
 {
-  return (a.get_dni()>b?true:false);
+  return (a.obtener()>b?true:false);
+}
+
+bool operator>(const DNI& a, const DNI& b)
+{
+  return (a.obtener()>b.obtener()?true:false);
+}
+
+bool operator<(const DNI& a, const DNI& b)
+{
+  if(a==b)
+    return false;
+  else if(a>b)
+    return false;
+  else
+    return true;
+}
+
+bool operator>=(const DNI& a, const DNI& b)
+{
+  return(a<b?false:true);
+}
+
+bool operator<=(const DNI& a, const DNI& b)
+{
+  return(a>b?false:true);
+}
+
+ostream& operator<<(ostream& os, const DNI& a)
+{
+  os << a.obtener();
+  return os;
 }
 
 int operator+(const DNI& a, const DNI& b)
 {
-  return(a.get_dni()+b.get_dni());
+  return(a.obtener()+b.obtener());
 }
   
-int operator/(const DNI& a, const DNI& b)
+unsigned operator/(const DNI& a, const DNI& b)
 {
-  return(a.get_dni()/b.get_dni());
+  return(a.obtener()/b.obtener());
 }
 
-int operator/(const DNI& a, const int& b)
+unsigned operator/(const DNI& a, const unsigned& b)
 {
-  return(a.get_dni()/b);
+  return(a.obtener()/b);
 }
   
-int operator%(const DNI& a, const DNI& b)
+unsigned operator%(const DNI& a, const DNI& b)
 {
-  return(a.get_dni()%b.get_dni());
+  return(a.obtener()%b.obtener());
 }
 
-int operator%(const DNI& a, const int& b)
+unsigned operator%(const DNI& a, const unsigned& b)
 {
-  return(a.get_dni()%b);
+  return(a.obtener()%b);
 }
+
+
+
+
+
+
+
+
